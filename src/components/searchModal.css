@@ -1,0 +1,59 @@
+#background{
+    margin-top: -50px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: all 0.5s;
+    opacity: 1;
+}
+
+#searchForm{
+    margin: 30px auto;
+    width: 315px;
+    height: 230px;
+    transition: all 0.5s;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+#searchForm input{
+    margin: 10px 10px;
+    width: 280px;
+    height: 20px;
+}
+
+#searchForm input:nth-child(1){
+    margin-top: 20px;
+}
+
+#searchForm input::placeholder{
+    color : #1FAB89;
+}
+
+#searchForm input[name=apiPwd]{
+    background-image: url("../imgs/eyeClose.png");
+    background-size: 20px;
+    background-position: right;
+    background-repeat: no-repeat;
+    transition: all 0.5s;
+}
+
+#searchForm input[name=apiPwd]:active{
+    background-image: url("../imgs/eye.png");
+}
+
+#searchForm input[name=trans]{
+    background-image: url("../imgs/search.png");
+    background-size: 20px;
+    background-position: right;
+    background-repeat: no-repeat;
+    transition: all 0.5s;
+}
+
+#searchForm textarea{
+    margin: 20px auto;
+    width: 280px;
+    height: 50px;
+    border: 1px solid #dddddd;
+}

@@ -1,0 +1,61 @@
+#loginForm{
+    width: 100%;
+    min-width: 320px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#logo{
+    margin: 60px auto;
+    width: 315px;
+    cursor: pointer;
+}
+
+#loginForm input{
+    margin: 0px auto;
+    display: block;
+}
+
+#loginForm input[type=text], #loginForm input[type=password]{
+    margin: 30px auto;
+    width: 15%;
+    min-width: 230px;
+    border: none;
+    height: 5%;
+    min-height: 22px;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+#loginForm input[name=psw]{
+    background-image: url("../imgs/eyeClose.png");
+    background-size: 20px;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+#loginForm input[name=psw]:active{
+    background-image: url("../imgs/eye.png");
+}
+
+#loginForm input::placeholder{
+    color : #1FAB89;
+}
+
+#signBtn, #loginBtn, #offlineBtn{
+    display: block;
+    margin: 10px auto;
+    border: none;
+    width: 10%;
+    height: 30px;
+    min-width: 125px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    color: #000000;
+    text-decoration: none;
+}
+#loginBtn{
+    margin-top: 90px;
+}

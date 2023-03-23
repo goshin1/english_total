@@ -1,0 +1,196 @@
+treatment|치료법
+receipt|영수증
+generous|너그러운
+generously|너그럽게
+farmar|농부
+management|경영진
+consultant|자문위원
+baggage|수화물
+luggage|수화물
+statement|명세서, 보고서
+furniture|가구
+standards|기준들
+refund|환불
+air conditioner|에어컨
+across|가로 질러서
+there is|단수명사  ...이가 하나 있다
+drawer|서랍
+purse|지갑
+downstairs|아래층에
+conclusion|결론
+appearance|외모
+government|정부
+cheap|싼
+coworker|동료
+massive|거대한
+durable|견고한
+careful|세심한
+yell|소리지르다
+worker|직원
+affordable|적당한
+each|각각의(가산명사 앞)
+every|모든(가산명사 앞)
+another|또 다른(가산명사 앞)
+a few|몇 개의(가산명사 앞)
+few|거의 없는(가산명사 앞)
+fewer|더 적은(가산명사 앞)
+many|많은(가산명사 앞)
+several|몇몇의(가산명사 앞)
+both|둘 다의(가산명사 앞)
+much|많은(불가산명사 앞)
+a little|적은(불가산명사 앞)
+little|거의 없는(불가산명사 앞)
+less|더 적은(불가산명사 앞)
+one of the|...중 하나(수식어)
+this day|지금  
+these days|요즘
+available|가능한, 시간이 되는
+sincerely|마음을 담아
+promotion|승진
+indicated|언급된
+invitation|초대장
+poor|미흡한
+church|교회
+cozy|아늑한
+least|최소한
+smooth|부드럽다
+extreme|극심한
+fluent|유창한
+establish|설립하다
+lease|임대하다 임대 차 계약
+predict|예측하다
+produce|생산하다
+flood|홍수
+protect|보호하다
+habitat|서식지
+temperature|온도
+pollution|오염
+audience|관객
+participate in|에 참석하다
+community|지역 사회
+perform|공연
+take place|개최되다, 열리다
+commute|통근하다
+cuisine|요리,요리법
+disease|병,질병
+annual|연례의,매년의
+vegetarian|채식
+vegetable|채소
+expensive|값비싼
+definitely|꼭, 반드시
+branch|지사, 분점
+flexible|유연한, 탄력적인
+remind|상기시키다, 다시 알려 주다
+shift|교대 근무(조)
+appointment|약속, 예약
+facility|시설
+fee|요금, 수수료
+grab a bite|(간단히) 먹다
+basement|지하실
+neighbor|이웃
+be scheduled for|으로 예정되어 있다
+encourage|격려하다, 권장하다 
+suggest|암시하다
+attract|끌어들이다
+study|학습하다, 연구하다, 공부하다
+studies|학습, 면학, 연구, 학업
+bending|(몸을) 굽히고 있다
+vehicle|차량
+walkway|보도
+brick|벽돌
+leaf|잎, 나뭇잎
+leave|떠나다
+leaves|나뭇잎들
+dock|부두
+pot|화분
+expenses|경비, 지출, 비용
+profitable|유익한
+contract|계약
+attract|끌어들이다
+poured|따라져있다
+put on|은 쓰고 있는 중 걸친 상태
+wear|이미 다 입은 상태
+demand|요청하다
+patient|환자
+dormitory|기숙사
+mechanic|정비공
+yet|아직, 그래도, 그러나
+survey|조사
+proposal|제안서
+poem|시
+poet|시인
+critic|비평가
+responsibility|책임
+professional business attire|전문적인 비즈니스 복장 = 정장
+assignments|과제
+attempt|시도하다
+intend|의도하다
+spend|쓰다, 소비하다
+probably|아마도
+unfortunately|불행하게도, 안타깝게
+afraid|유감, 두려운
+certainly|그럼요
+similar|비슷한
+role|역할
+negotiate|협상하다
+debate|논의하다, 토론하다
+persuade|설득하다
+construction|건설, 공사
+instruction|설명, 지도, 지시
+investor|투자자
+entertain|즐겁게하다, 즐기게하다
+expect|기대하다, 예상하다
+euros|유로
+regard|관계, ...으로 여기다
+authorize|권한을 부여하다, 위임하다
+insurance|보험
+deduct|공제하다, 빼다
+conduct|행동, 품위 +ed(행해진)
+outline|요약, 개요
+patent|특허
+congress|의회
+budget|예산
+fine|형:좋은, 훌륭함 명:벌금, 연체료
+transaction|거래
+inquiry|연구, 탐구, 문의
+behalf|이익, 원조, 자기편;지지
+evaluation|평가
+allocation|할당
+proficient|능숙한
+over there|저기에
+survey|설문, 조사
+such|그런
+scholarship|장학금
+could|can의 과거
+doubt|확신하지 못하다, 의문을 갖다
+ask for|요청하다
+parties|파티, 모임, 일행
+punish|벌을 주다, 처벌
+renovate|수리하다
+conduct|행동, 행위
+director|지휘자, 감독관
+income|소득
+complicate|복잡하게 만들다
+sibling|형제, 자매
+usual|평소
+wise|현명함
+ever|전혀
+spill|엎지르다, 흩뜨리다
+depart|출발하다
+belongings|소유물, 소지품
+regional|지방의, 지역의
+ahead|앞서
+grant|주다, 허락하다
+assembly|집회, 회의, 조립
+determine|결심시키다,결정하다
+eligibility|적임, 적격
+subordinate|부하, 하위의, 중요도가 낮은
+profitable|이익이 되는, 벌이가 되는
+stockholder|주주
+strategy|전략
+ensure|보장하다, 안전하다
+proposal|신청, 제안, 계획, 안
+convey|나르다, 전달하다
+urgent|긴급한, 다급한
+bulletin|게시, 고시
+adjust|조절하다, 맞추다
