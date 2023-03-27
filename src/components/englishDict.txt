@@ -194,3 +194,21 @@ convey|나르다, 전달하다
 urgent|긴급한, 다급한
 bulletin|게시, 고시
 adjust|조절하다, 맞추다
+as of late|최근에 와서는
+annoy|짜증나게하다, 불쾌하다
+vice|악, 악덕
+president|대통령, 사장
+vice president|부통령, 부사장
+thousand|1000천
+hundred|100백
+ideal|이상
+loyalty|충성, 충의
+delegate|대표, 사절, 파견
+computerization|전산화
+clerk|점원, 서기
+claim|주장하다
+financial|재정상의, 재무의, 금용의
+incompetence|무능
+disagreement|의견차이, 다툼
+pleasant|기분좋은, 즐거운
+participants|참가자

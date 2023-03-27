@@ -11,6 +11,7 @@
     line-height: 40px;
     text-indent: 10px;
     color: #d7fbe8 ;
+    text-align: left;
 }
 
 #search{
@@ -20,12 +21,19 @@
     max-width: 300px;
     height: 18px;
     float: right;
-    text-align: right;
+    text-align: left;
     background-color: #1fab89;
     background-image: url("../imgs/search.png");
     background-size: 18px;
     background-repeat: no-repeat;
     background-position: right;
+}
+
+#listRemocon{
+    top: 0px;
+    width: 100%;
+    position: fixed;
+    background-color: #ffffff;
 }
 
 #listNav{
@@ -54,6 +62,7 @@
     cursor: pointer;
     border: none;
     background-color: #ffffff;
+    position: static;
 }
 
 .linkBtn span{
@@ -74,6 +83,7 @@
     display: block;
     float: left;
     text-indent: 10px;
+    font-weight: bold;
 }
 
 #speedBar {
@@ -85,10 +95,7 @@
     transition: all 0.2s;
     border-radius: 5px;
     float: right;
-}
-
-#speedBar:active {
-	outline: none;
+    outline: none;
     background-color: #d7fbe8;
 }
 
@@ -108,8 +115,6 @@
     cursor: pointer;
 }
 
-
-
 .englishBlock{
     margin: 15px auto;
     width: 95%;
@@ -119,6 +124,10 @@
     border-bottom: 1px solid #9df3c4;
     cursor: pointer;
     font-size: 13px;
+}
+
+.englishBlock:nth-child(1){
+    margin-top : 190px
 }
 
 .speaker{

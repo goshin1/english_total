@@ -8,7 +8,6 @@ export default function Login(){
     const navigate = useNavigate();
     const idRef = useRef();
     const pwdRef = useRef();
-
     const login = async (event) => {
         if(idRef.current.value === '' || pwdRef.current.value === ''){
             event.preventDefault();
