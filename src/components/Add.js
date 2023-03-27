@@ -27,7 +27,7 @@ export default function Add(){
                 setSaveText(saveText+("" + wordRef.current.value + "|" + meanRef.current.value + "\n"));
                 console.log(saveWords);
                 console.log(saveText);
-                axios.post('http://localhost:5000/addWord', {
+                axios.post('https://port-0-english-server-3vw25lch3mal1.gksl2.cloudtype.app/addWord', {
                     data : {
                         text : wordRef.current.value + "|" + meanRef.current.value
                     }

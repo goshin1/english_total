@@ -131,7 +131,7 @@ export default function List(){
                     })
                     reader.readAsText(upFile);
                     console.log(upFile);
-                    axios.post('http://localhost:5000/upload',{
+                    axios.post('https://port-0-english-server-3vw25lch3mal1.gksl2.cloudtype.app/upload',{
                         data : {
                             file : upFile,
                             fileAddr : upFileAddr
