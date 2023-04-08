@@ -56,29 +56,33 @@
     margin: 30px auto;
     width: 300px;
     height: 150px;
-    background-color: #D7FBE8;
     text-align: center;
     overflow-x :unset;
 }
 
 .addBlock{
     width: 290px;
+    line-height: 20px;
     margin: 5px 0px;
     height: auto;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 1px solid #62d2a2;
     word-wrap: break-word;
-    background-color: red;
+    text-align: left;
     display: inline-block;
 }
 
 .addBlock > span:nth-child(1){
-    width: 120px;;
+    width: 120px;
+    padding: 5px 10px;
     float: left;
     display: block;
 }
 
 .addBlock > span:nth-child(2){
     width: 120px;
+    padding: 5px 10px;
     float: right;
+    text-align: right;
     display: block;
+    
 }

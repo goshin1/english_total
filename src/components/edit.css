@@ -1,0 +1,21 @@
+.englishBlock input{
+    line-height: 30px;
+    border: none;
+    background-color: rgba(0,0,0,0);
+}
+
+.englishCheck{
+    margin : 12px 5px;
+    width: 20px;
+    height: 20px;
+    float: left;
+    border: 1px solid #62d2a2;
+    border-radius: 50%;
+    background-size: 25px;
+    background-position: center;
+    background-image: url('../imgs/checkIcon.png');
+}
+
+.englishCheck:active{
+    background-image: url('../imgs/checkIconOn.png');
+}

@@ -1,17 +1,25 @@
 import './add.css';
 import { useState, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import uuid from 'react-uuid';
 import axios from 'axios';
 // list에서 파일정보를 가져와 단어를 추가하기
 
 export default function Add(){
     const wordRef = useRef(null);   
     const meanRef = useRef(null);
-    const dispatch = useDispatch();
     const [saveWords, setSaveWords] = useState([]);
-    const [saveText, setSaveText] = useState("")
-    const saveFile = useSelector(state => {return state.note.file});
-    
+    const [saveText, setSaveText] = useState("");
+    const location = useLocation();
+    let temp = [];
+    for(let i = 0; i < saveWords.length; i++){
+        temp.push(
+            <p key={uuid()} className='addBlock'>
+                <span>{ saveWords[i][0] }</span>
+                <span>{ saveWords[i][1] }</span>
+            </p>
+        );
+    }
     return <div id='addDiv'>
         
         <p>
@@ -25,11 +33,11 @@ export default function Add(){
             <button id='wAdd' onClick={ () => {
                 setSaveWords([...saveWords, [wordRef.current.value, meanRef.current.value]]);
                 setSaveText(saveText+("" + wordRef.current.value + "|" + meanRef.current.value + "\n"));
-                console.log(saveWords);
-                console.log(saveText);
-                axios.post('https://port-0-english-server-3vw25lch3mal1.gksl2.cloudtype.app/addWord', {
+                axios.post('http://localhost:5000/addWord', {
                     data : {
-                        text : wordRef.current.value + "|" + meanRef.current.value
+                        id : location.state.id,
+                        word : wordRef.current.value,
+                        mean : meanRef.current.value
                     }
                 }).then(res => {
 
@@ -37,14 +45,11 @@ export default function Add(){
             } }>추가</button>    
         </p>
         <div id='wordDiv'>
-            <p className='addBlock'>
-                <span>1adddddddddddddddddddddddddddddddddddddddddddddd</span>
-                <span>더하다dddddd</span>
+            <p id='addBlockHeader'>
+                추가한 단어
             </p>
-            <p className='addBlock'>
-                <span>2adddddddddddddddddddddddddddddddddddddddddddddd</span>
-                <span>더하다dddddd</span>
-            </p>
+            {temp}
+            
         </div>
     </div>
 }

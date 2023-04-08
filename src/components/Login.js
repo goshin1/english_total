@@ -14,7 +14,26 @@ export default function Login(){
             alert('아이디, 비밀번호를 입력해주세요.');
             return;
         }
-        navigate('/list');
+        axios.post('http://localhost:5000/login', {
+            data : {
+                id : idRef.current.value,
+                pwd : pwdRef.current.value
+            }
+        }).then(res => {
+            console.log(res.data.id );
+            if(res.data !== 'login fail'){
+                navigate('/list', {
+                        state : {
+                            id : res.data.id
+                        }
+                    });
+                return;
+            }
+            alert('아이디, 비밀번호가 틀렸습니다.\n다시 입력해주세요.');
+            return;
+        });
+
+        //navigate('/list');
     }
 
 
@@ -26,10 +45,10 @@ export default function Login(){
         }} onMouseUp={event=>{
             event.currentTarget.type = "password";
         }}/>
-        <Link id='loginBtn' to='/list' onClick={ event => {
+        <Link id='loginBtn' to='/' onClick={ event => {
             login(event);  
         }}>로그인</Link>
         <Link to='/list' id='offlineBtn'>오프라인</Link>
-        <Link to="https://developers.naver.com/products/papago/nmt/nmt.md" id='signBtn'>회원가입</Link>
+        <Link to="/sign" id='signBtn'>회원가입</Link>
     </form>
 }

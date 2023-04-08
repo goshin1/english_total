@@ -1,23 +1,27 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useState, useRef, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setWords, uploade } from '../noteSlice';
-import uuid from "react-uuid";
+import { setWords } from '../noteSlice';
 import axios from "axios";
 import './list.css';
 
+// 예시에서는 useState를 통해 드래그 드롭 할 때 마다 변경해주지만 여기서는
+// load를 통해 불러온 배열을 useSelector로 불러들이기 때문에 
+// useDispatch나 다른 것을 통해 수정 하고 불러와야 된다.
+// 이를 수정할 것
 
 export default function List(){
     const words = useSelector(state=>{ return state.note.words });
-    const [file, setFile] = useState('');
     const speedRef = useRef();
     const [search, setSearch] = useState('');
     const dispatch = useDispatch();
+    const location = useLocation();
     const navigate = useNavigate();
-    // 파일에서 불러와 저장한 배열을 통해 아래 영어단어블록을 생성
 
+
+
+    // https://moong-bee.com/posts/react-drag-and-drop-list-sortable
     let voices = [];
-    //https://sub0709.tistory.com/86
     const setVoliceList = () => {
         voices = window.speechSynthesis.getVoices();
     }
@@ -60,35 +64,55 @@ export default function List(){
 
     const englishBlocks = [];
     if(words.length > 0){
+        
         for(let i = 0; i < words.length; i++){
-            if(words[i][0].includes(search)){
+            if(words[i].word.includes(search)){
+                
                 englishBlocks.push(
-                    <div className='englishBlock' key={uuid()}>
+                    <div className='englishBlock' data-position={words[i].num} key={words[i].num}>
                         <button className='speaker' onClick={() => {
-                            speech(words[i][0]);
+                            speech(words[i].word);
                         }}></button>
                         <span className='english'>
                             <div className='overBlock' onMouseOver={event=>{
                                 if(event.currentTarget.innerHTML.length * 5 > 40){
-                                    event.currentTarget.style.marginLeft = "-"+event.currentTarget.innerHTML.length * 5 + "px";
+                                    event.currentTarget.style.marginLeft = "-"+event.currentTarget.innerHTML.length * 6 + "px";
                                 }
                             }} onMouseOut={event=>{
                                 event.currentTarget.style.marginLeft = "0px";
                             }}>
-                                { words[i][0] }
+                                { words[i].word }
                             </div>
                         </span>
+                        <button className='delete' onClick={async () => {
+                            await axios.post('http://localhost:5000/delete', {
+                                data : {
+                                    id : location.state.id,
+                                    num : words[i].num
+                                }
+                            });
+
+                            await axios.post('http://localhost:5000/load', {
+                                data : {
+                                    id : location.state.id
+                                }
+                            })
+                            .then((res) => {
+                                dispatch(setWords(res.data));
+                            });
+                        }}></button>
                         <span className='hangul'>
-                        <div className='overBlock' onMouseOver={event=>{
-                                if(event.currentTarget.innerHTML.length * 5 > 40){
-                                    event.currentTarget.style.marginLeft = "-"+event.currentTarget.innerHTML.length * 5 + "px";
-                                }
-                            }} onMouseOut={event=>{
-                                event.currentTarget.style.marginLeft = "0px";
-                            }}>
-                                { words[i][1] }
+                            <div className='overBlock' onMouseOver={event=>{
+                                    if(event.currentTarget.innerHTML.length * 5 > 40){
+                                        event.currentTarget.style.marginLeft = "-"+event.currentTarget.innerHTML.length * 6 + "px";
+                                    }
+                                }} onMouseOut={event=>{
+                                    event.currentTarget.style.marginLeft = "0px";
+                                }}>
+                                    { words[i].mean }
                             </div>
                         </span>
+                        
                     </div>
                 );
             }
@@ -106,38 +130,27 @@ export default function List(){
                 }} />
             </header>
             <nav id='listNav'>
-                <Link to='/add' className='linkBtn'>단어 <span>추가</span></Link>
+                <Link to='/' className='linkBtn' onClick={(event) => {
+                    event.preventDefault();
+                    navigate('/addPage', {
+                        state : {
+                            id : location.state.id
+                        }
+                    });
+                }}>단어 <span>추가</span></Link>
 
                 <Link to="" className='linkBtn'>단어 <span>학습</span></Link>
                 
-                <Link to="" className='linkBtn'>단어 <span>편집</span></Link>
+                <Link to="/edit" className='linkBtn' state={{id : location.state.id}} >단어 <span>편집</span></Link>
                 
-                <label className='linkBtn'>불러오기<input type='file' accept='.txt' onChange={event => {
-                    
-
-
-                    setFile(event.target.files[0]);
-                    let upFile = event.target.files[0];
-                    let upFileAddr = window.URL.createObjectURL(upFile);
-                    dispatch(uploade(upFileAddr));
-                    const reader = new FileReader();
-                    reader.addEventListener('load', () => {
-                        const temp = reader.result.split('\n');
-                        const arr = [];
-                        for(let i = 0; i < temp.length; i++){
-                            arr.push(temp[i].split("|"));
-                        }
-                        dispatch(setWords(arr));
-                    })
-                    reader.readAsText(upFile);
-                    console.log(upFile);
-                    axios.post('https://port-0-english-server-3vw25lch3mal1.gksl2.cloudtype.app/upload',{
+                <label className='linkBtn'>불러오기<button type='file' onClick={async event => {
+                    await axios.post('http://localhost:5000/load', {
                         data : {
-                            file : upFile,
-                            fileAddr : upFileAddr
+                            id : location.state.id
                         }
-                    }).then(res => {
-
+                    })
+                    .then((res) => {
+                        dispatch(setWords(res.data));
                     });
                 }}/></label>
                 <br/>
