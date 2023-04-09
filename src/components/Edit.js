@@ -11,7 +11,7 @@ import './list.css';
 
 export default function Edit(){
     const location = useLocation();
-    axios.post('http://localhost:5000/load', {
+    axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
         data : {
             id : location.state.id
         }
@@ -55,14 +55,14 @@ export default function Edit(){
                         </div>
                     </span>
                     <button className='delete' onClick={async () => {
-                        await axios.post('http://localhost:5000/delete', {
+                        await axios.post(`${process.env.REACT_APP_ROUTER_HOST}delete`, {
                             data : {
                                 id : location.state.id,
                                 num : words[i].num
                             }
                         });
 
-                        await axios.post('http://localhost:5000/load', {
+                        await axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
                             data : {
                                 id : location.state.id
                             }
@@ -159,7 +159,7 @@ export default function Edit(){
                 }}/>
                 <input id='selectDelBtn' type='button' value='삭제'
                     onClick={(event) => {
-                        axios.post('http://localhost:5000/deleteWords', {
+                        axios.post(`${process.env.REACT_APP_ROUTER_HOST}deleteWords`, {
                             data : {
                                 id : location.state.id,
                                 deletes : deletes

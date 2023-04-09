@@ -18,7 +18,7 @@ export default function Sign(){
         <label id='idLabel'>
             <input type="text" name="id" placeholder='Id' ref={idRef} style={ dup === 'sucess' || dup === 'null' ? {color : '#000000'} : {color : '#ff0000'}  } />
             <input type='button' name='duplic' value='' onClick={() => {
-                axios.post('http://localhost:5000/duplic', {
+                axios.post(`${process.env.REACT_APP_ROUTER_HOST}duplic`, {
                     data : {
                         id : idRef.current.value
                     }
@@ -68,7 +68,7 @@ export default function Sign(){
                 return;
             }
 
-            axios.post('http://localhost:5000/sign', {
+            axios.post(`${process.env.REACT_APP_ROUTER_HOST}sign`, {
                 data : {
                     id : idRef.current.value,
                     pwd : pwdRef.current.value,

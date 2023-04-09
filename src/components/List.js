@@ -85,14 +85,14 @@ export default function List(){
                             </div>
                         </span>
                         <button className='delete' onClick={async () => {
-                            await axios.post('http://localhost:5000/delete', {
+                            await axios.post(`${process.env.REACT_APP_ROUTER_HOST}delete`, {
                                 data : {
                                     id : location.state.id,
                                     num : words[i].num
                                 }
                             });
 
-                            await axios.post('http://localhost:5000/load', {
+                            await axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
                                 data : {
                                     id : location.state.id
                                 }
@@ -144,7 +144,7 @@ export default function List(){
                 <Link to="/edit" className='linkBtn' state={{id : location.state.id}} >단어 <span>편집</span></Link>
                 
                 <label className='linkBtn'>불러오기<button type='file' onClick={async event => {
-                    await axios.post('http://localhost:5000/load', {
+                    await axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
                         data : {
                             id : location.state.id
                         }

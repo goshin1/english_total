@@ -33,7 +33,7 @@ export default function Add(){
             <button id='wAdd' onClick={ () => {
                 setSaveWords([...saveWords, [wordRef.current.value, meanRef.current.value]]);
                 setSaveText(saveText+("" + wordRef.current.value + "|" + meanRef.current.value + "\n"));
-                axios.post('http://localhost:5000/addWord', {
+                axios.post(`${process.env.REACT_APP_ROUTER_HOST}addWord`, {
                     data : {
                         id : location.state.id,
                         word : wordRef.current.value,

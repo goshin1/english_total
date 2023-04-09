@@ -5,6 +5,7 @@ import axios from 'axios';
 import "./login.css"
 
 export default function Login(){
+    console.log(process.env);
     const navigate = useNavigate();
     const idRef = useRef();
     const pwdRef = useRef();
@@ -14,7 +15,7 @@ export default function Login(){
             alert('아이디, 비밀번호를 입력해주세요.');
             return;
         }
-        axios.post('http://localhost:5000/login', {
+        axios.post(`${process.env.REACT_APP_ROUTER_HOST}login`, {
             data : {
                 id : idRef.current.value,
                 pwd : pwdRef.current.value
