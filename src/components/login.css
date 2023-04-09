@@ -51,7 +51,7 @@
     width: 25px;
     height: 25px;
     border: none;
-    background-image: url('../imgs/eye.png');
+    background-image: url('../imgs/eyeClose.png');
     background-color: #ffffff;
     background-size: 25px;
     background-position: center;
@@ -59,9 +59,6 @@
     transition: all 0.2s;
 }
 
-.pswLabel input[type=button]:active{
-    background-image: url('../imgs/eyeClose.png');
-}
 
 #loginForm input::placeholder{
     color : #1FAB89;

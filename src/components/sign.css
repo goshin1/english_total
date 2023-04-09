@@ -52,14 +52,18 @@
 }
 
 .pswLabel{
-    margin: 0 auto;
+    margin: 30px auto;
     width: 15%;
     min-width: 230px;
     height: 40px;
     display: block;
 }
 
-#signForm input[name=psw], input[name=pswCh]{
+#pswChLabel{
+    margin-top: -15px;
+}
+
+#signForm input[name=psw], #signForm input[name=pswCh]{
     width: 15%;
     min-width: 200px;
     border: none;
@@ -70,29 +74,25 @@
     float: left;
 }
 
-.pswLabel:{
+#signForm:nth-child(5){
     margin-top: 30px;
 }
 
+
 #signForm input[name=pswCh]{
-    margin-top: 30px;
+    margin-top: 0px;
 }
 
 .pswLabel input[type=button]{
-    float: right;
     width: 25px;
     height: 25px;
     border: none;
-    background-image: url('../imgs/eye.png');
+    background-image: url('../imgs/eyeClose.png');
     background-color: #ffffff;
     background-size: 25px;
     background-position: center;
     background-repeat: no-repeat;
     transition: all 0.2s;
-}
-
-.pswLabel input[type=button]:active{
-    background-image: url('../imgs/eyeClose.png');
 }
 
 #signForm input[name=duplic]{

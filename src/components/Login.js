@@ -3,6 +3,8 @@ import { useRef, useState } from 'react';
 import logoExtend from '../imgs/englishnoteLogoExtend.png';
 import axios from 'axios';
 import "./login.css"
+import eye from '../imgs/eye.png';
+import eyeClose from '../imgs/eyeClose.png'
 
 export default function Login(){
     const navigate = useNavigate();
@@ -46,8 +48,10 @@ export default function Login(){
             <input type='button' className='typeBtn' onClick={(event)=>{
                 if(pwd){
                     document.getElementById('psw').type = "text";
+                    event.currentTarget.style.backgroundImage = `url(${eye})`;
                 } else {
                     document.getElementById('psw').type = "password";
+                    event.currentTarget.style.backgroundImage = `url(${eyeClose})`;
                 }
                 setPwd(!pwd);
             }}/>

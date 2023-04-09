@@ -3,6 +3,8 @@ import logoExtend from '../imgs/englishnoteLogoExtend.png';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useRef, useState } from 'react';
+import eye from '../imgs/eye.png'
+import eyeClose from '../imgs/eyeClose.png'
 
 export default function Sign(){
     const idRef = useRef();
@@ -36,20 +38,24 @@ export default function Sign(){
             <input type='button' className='typeBtn' onClick={(event)=>{
                 if(pwdCh){
                     document.getElementById('psw').type = "text";
+                    event.currentTarget.style.backgroundImage = `url(${eye})`;
                 } else {
                     document.getElementById('psw').type = "password";
+                    event.currentTarget.style.backgroundImage = `url(${eyeClose})`;
                 }
                 setPwdCh(!pwdCh);
             }}/>
         </label>
         
-        <label className='pswLabel'>
+        <label className='pswLabel' id='pswChLabel'>
             <input type="password" id="pswCh" name="pswCh" placeholder='Password Check' ref={ pwdRef } autoComplete="off"/>
             <input type='button' className='typeBtn' onClick={(event)=>{
                 if(pwd){
                     document.getElementById('pswCh').type = "text";
+                    event.currentTarget.style.backgroundImage = `url(${eye})`;
                 } else {
                     document.getElementById('pswCh').type = "password";
+                    event.currentTarget.style.backgroundImage = `url(${eyeClose})`;
                 }
                 setPwd(!pwd);
             }}/>
