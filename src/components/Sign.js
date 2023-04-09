@@ -11,7 +11,8 @@ export default function Sign(){
     const emailRef = useRef();
     const navigate = useNavigate();
     const [dup, setDup] = useState('null');
-
+    const [pwd, setPwd] = useState(true);
+    const [pwdCh, setPwdCh] = useState(true);
 
     return <form id="signForm">
         <img id='logo' src={logoExtend}  alt='logo'/>
@@ -30,17 +31,29 @@ export default function Sign(){
         </label>
         
         <input type="text" name='email' placeholder='E-mail' ref={emailRef}/>
-        <input type="password" className='pwd' name="pwd" placeholder='Password' onMouseDown={(event)=>{
-            event.currentTarget.type = "text";
-        }} onMouseUp={event=>{
-            event.currentTarget.type = "password";
-        }} ref={pwdRef}/>
+        <label className='pswLabel'>
+            <input type="password" id="psw" name="psw" placeholder='Password' ref={ pwdRef } autoComplete="off"/>
+            <input type='button' className='typeBtn' onClick={(event)=>{
+                if(pwdCh){
+                    document.getElementById('psw').type = "text";
+                } else {
+                    document.getElementById('psw').type = "password";
+                }
+                setPwdCh(!pwdCh);
+            }}/>
+        </label>
         
-        <input type="password" className='pwd' name="pwdCh" placeholder='Check Password' onMouseDown={(event)=>{
-            event.currentTarget.type = "text";
-        }} onMouseUp={event=>{
-            event.currentTarget.type = "password";
-        }} ref={pwdCheckRef}/>
+        <label className='pswLabel'>
+            <input type="password" id="pswCh" name="pswCh" placeholder='Password Check' ref={ pwdRef } autoComplete="off"/>
+            <input type='button' className='typeBtn' onClick={(event)=>{
+                if(pwd){
+                    document.getElementById('pswCh').type = "text";
+                } else {
+                    document.getElementById('pswCh').type = "password";
+                }
+                setPwd(!pwd);
+            }}/>
+        </label>
         <button id='sign' onClick={(event) => {
             event.preventDefault();
             if(idRef.current.value === ''){

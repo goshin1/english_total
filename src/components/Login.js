@@ -1,14 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import logoExtend from '../imgs/englishnoteLogoExtend.png';
 import axios from 'axios';
 import "./login.css"
 
 export default function Login(){
-    console.log(process.env);
     const navigate = useNavigate();
     const idRef = useRef();
     const pwdRef = useRef();
+    const [pwd, setPwd] = useState(true);
     const login = async (event) => {
         if(idRef.current.value === '' || pwdRef.current.value === ''){
             event.preventDefault();
@@ -42,11 +42,14 @@ export default function Login(){
         <img id='logo' src={logoExtend} alt='logo'/>
         <input type="text" name="id" placeholder='Id' ref={ idRef } />
         <label className='pswLabel'>
-            <input type="password" id="psw" name="psw" placeholder='Password' ref={ pwdRef }/>
-            <input type='button' className='typeBtn' onMouseDown={(event)=>{
-                document.getElementById('psw').type = "text";
-            }} onMouseUp={event=>{
-                document.getElementById('psw').type = "password";
+            <input type="password" id="psw" name="psw" placeholder='Password' ref={ pwdRef } autoComplete="off"/>
+            <input type='button' className='typeBtn' onClick={(event)=>{
+                if(pwd){
+                    document.getElementById('psw').type = "text";
+                } else {
+                    document.getElementById('psw').type = "password";
+                }
+                setPwd(!pwd);
             }}/>
         </label>
         <Link id='loginBtn' to='/' onClick={ event => {
