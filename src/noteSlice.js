@@ -6,14 +6,21 @@ export const noteSlice = createSlice({
     name: 'note',
     initialState: {
         words : [],
-        file : null
+        deletes : [],
+        updates : []
     },
     reducers: {
         setWords : (state, action) => {
             state.words = action.payload;
         },
-        uploade : (state, action) => {
-            state.file = action.payload;
+        deleteWord : (state, action) => {
+            state.deletes = [ ...state.deletes, action.payload];
+        },
+        deleteWordCancel : (state, action) => {
+            state.deletes = state.deletes.filter(num => num !== action.payload);
+        },
+        updateWord : (state, action) => {
+            state.updates = [ ...state.updates, action.payload]
         }
     }
 })
@@ -21,4 +28,6 @@ export const noteSlice = createSlice({
 
 export default noteSlice.reducer;
 export const {setWords} = noteSlice.actions;
-export const {uploade} = noteSlice.actions;
+export const {deleteWord} = noteSlice.actions;
+export const {deleteWordCancel} = noteSlice.actions;
+export const {updateWord} = noteSlice.actions;

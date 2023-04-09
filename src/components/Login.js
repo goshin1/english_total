@@ -48,7 +48,6 @@ export default function Login(){
         <Link id='loginBtn' to='/' onClick={ event => {
             login(event);  
         }}>로그인</Link>
-        <Link to='/list' id='offlineBtn'>오프라인</Link>
         <Link to="/sign" id='signBtn'>회원가입</Link>
     </form>
 }
