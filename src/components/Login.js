@@ -41,11 +41,14 @@ export default function Login(){
     return <form id='loginForm'>
         <img id='logo' src={logoExtend} alt='logo'/>
         <input type="text" name="id" placeholder='Id' ref={ idRef } />
-        <input type="password" name="psw" placeholder='Password' ref={ pwdRef } onMouseDown={(event)=>{
-            event.currentTarget.type = "text";
-        }} onMouseUp={event=>{
-            event.currentTarget.type = "password";
-        }}/>
+        <label className='pswLabel'>
+            <input type="password" id="psw" name="psw" placeholder='Password' ref={ pwdRef }/>
+            <input type='button' className='typeBtn' onMouseDown={(event)=>{
+                document.getElementById('psw').type = "text";
+            }} onMouseUp={event=>{
+                document.getElementById('psw').type = "password";
+            }}/>
+        </label>
         <Link id='loginBtn' to='/' onClick={ event => {
             login(event);  
         }}>로그인</Link>

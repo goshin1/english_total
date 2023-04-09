@@ -16,7 +16,7 @@
     display: block;
 }
 
-#loginForm input[type=text], #loginForm input[type=password]{
+#loginForm input[name=id]{
     margin: 30px auto;
     width: 15%;
     min-width: 230px;
@@ -28,14 +28,39 @@
 }
 
 #loginForm input[name=psw]{
-    background-image: url("../imgs/eyeClose.png");
-    background-size: 20px;
-    background-position: right;
-    background-repeat: no-repeat;
+    width: 15%;
+    min-width: 200px;
+    border: none;
+    height: 5%;
+    min-height: 22px;
+    font-size: 16px;
+    transition: all 0.2s;
+    float: left;
 }
 
-#loginForm input[name=psw]:active{
-    background-image: url("../imgs/eye.png");
+.pswLabel{
+    margin: 30px auto;
+    width: 15%;
+    min-width: 230px;
+    height: 40px;
+    display: block;
+}
+
+.pswLabel input[type=button]{
+    float: right;
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-image: url('../imgs/eye.png');
+    background-color: #ffffff;
+    background-size: 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.2s;
+}
+
+.pswLabel input[type=button]:active{
+    background-image: url('../imgs/eyeClose.png');
 }
 
 #loginForm input::placeholder{
