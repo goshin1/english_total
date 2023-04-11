@@ -33,12 +33,13 @@
     max-width: 300px;
     height: 18px;
     float: right;
-    text-align: left;
+    
+    text-align: right;
     background-color: #1fab89;
     background-image: url("../imgs/search.png");
     background-size: 18px;
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: left;
 }
 
 #listRemocon{
@@ -109,6 +110,7 @@
     float: right;
     outline: none;
     background-color: #d7fbe8;
+    
 }
 
 

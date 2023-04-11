@@ -20,7 +20,11 @@ export const noteSlice = createSlice({
             state.deletes = state.deletes.filter(num => num !== action.payload);
         },
         updateWord : (state, action) => {
-            state.updates = [ ...state.updates, action.payload]
+            state.updates = [ ...state.updates, action.payload ]
+        },
+        updateModifyWord : (state, action) => {
+            state.updates = state.updates.filter(word => word.num !== action.payload.num);
+            state.updates = [ ...state.updates, action.payload ]
         }
     }
 })
@@ -31,3 +35,4 @@ export const {setWords} = noteSlice.actions;
 export const {deleteWord} = noteSlice.actions;
 export const {deleteWordCancel} = noteSlice.actions;
 export const {updateWord} = noteSlice.actions;
+export const {updateModifyWord} = noteSlice.actions;

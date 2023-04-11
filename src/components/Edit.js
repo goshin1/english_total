@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setWords, deleteWord, deleteWordCancel } from "../noteSlice";
+import { setWords, deleteWord, deleteWordCancel,  updateWord, updateModifyWord } from "../noteSlice";
 import check from '../imgs/checkIcon.png';
 import checkOn from '../imgs/checkIconOn.png';
 import axios from "axios";
@@ -21,18 +21,21 @@ export default function Edit(){
     });
     const words = useSelector(state => { return state.note.words });
     const deletes = useSelector(state => { return state.note.deletes });
+    const checkUpdate = useSelector(state => { return state.note.updates });
+    
     const [search, setSearch] = useState('');
     const [remocon, setRemocon] = useState(false);
     const [all, setAll] = useState(true);
-    const dispatch = useDispatch();
+    const [update, setUpdate] = useState([]);
+    
 
+    const dispatch = useDispatch();
     const englishBlocks = [];
     for(let i = 0; i < words.length; i++){
         if(words[i].word.includes(search)){
             englishBlocks.push(
                 <div className='englishBlock' data-position={words[i].num} key={words[i].num}>
                     <div className='englishCheck' onClick={(event) => {
-                        console.log(deletes);
                         if(deletes.includes('' + words[i].num)){
                             dispatch(deleteWordCancel('' + words[i].num));
                         } else {
@@ -51,7 +54,19 @@ export default function Edit(){
                         }} onMouseOut={event=>{
                             event.currentTarget.style.marginLeft = "0px";
                         }}>
-                            <input type="text" defaultValue={ words[i].word }/>
+                            <input type="text" defaultValue={ words[i].word }
+                                onChange={(event) => {
+                                    let num = '' + words[i].num;
+                                    let temp = Object.assign({}, words[i]);
+                                    temp.word = event.currentTarget.value;
+
+                                    if(!update.includes(num)){
+                                        setUpdate([ ...update, num]);
+                                        dispatch(updateWord(temp));
+                                    } else {
+                                        dispatch(updateModifyWord(temp));
+                                    }
+                                }}/>
                         </div>
                     </span>
                     <button className='delete' onClick={async () => {
@@ -79,7 +94,20 @@ export default function Edit(){
                             }} onMouseOut={event=>{
                                 event.currentTarget.style.marginLeft = "0px";
                             }}>
-                                <input type="text" defaultValue={ words[i].mean }/>
+                                <input type="text" defaultValue={ words[i].mean } 
+                                onChange={(event) => {
+                                    let num = '' + words[i].num;
+                                    let temp = Object.assign({}, words[i]);
+                                    temp.mean = event.currentTarget.value;
+                                    if(!update.includes(num)){
+                                        setUpdate([ ...update, num]);
+                                        dispatch(updateWord(temp));
+                                        
+                                    } else {
+                                        dispatch(updateModifyWord(temp));
+                                    }
+                                    
+                                }}/>
                         </div>
                     </span>
                     
@@ -168,6 +196,13 @@ export default function Edit(){
                     }}/>
                 <input id='selectUpBtn' type='button' value='변경'
                     onClick={(event) => {
+                        console.log(checkUpdate);
+                        axios.post(`${process.env.REACT_APP_ROUTER_HOST}updateWords`, {
+                            data : {
+                                id : location.state.id,
+                                checkUpdate : checkUpdate
+                            }
+                        })
                 }}/>
             </div>
         </header>

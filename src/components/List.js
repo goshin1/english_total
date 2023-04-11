@@ -130,16 +130,9 @@ export default function List(){
                 }} />
             </header>
             <nav id='listNav'>
-                <Link to='/' className='linkBtn' onClick={(event) => {
-                    event.preventDefault();
-                    navigate('/addPage', {
-                        state : {
-                            id : location.state.id
-                        }
-                    });
-                }}>단어 <span>추가</span></Link>
+                <Link to='/addPage' className='linkBtn' state = {{id : location.state.id}}>단어 <span>추가</span></Link>
 
-                <Link to="" className='linkBtn'>단어 <span>학습</span></Link>
+                <Link to="/playSet" className='linkBtn' state={{id : location.state.id, leng : words.length}}>단어 <span>학습</span></Link>
                 
                 <Link to="/edit" className='linkBtn' state={{id : location.state.id}} >단어 <span>편집</span></Link>
                 

@@ -1,0 +1,71 @@
+#setHeader{
+    width: 100%;
+    background-color: #1fab89;
+    height: 40px;
+    line-height: 40px;
+    text-indent: 10px;
+    color: #d7fbe8 ;
+    text-align: left;
+}
+
+#playDiv > label{
+    margin: 30px auto;
+    width: 15%;
+    min-width: 300px;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+}
+
+#playDiv input[type=number]{
+    border: none;
+    float: right;
+    height: 20px;
+    margin: 5px;
+    text-align: right;
+}
+
+#playDiv label span{
+    float: left;
+}
+
+.radioLabel{
+    margin: 0 3px;
+    width: 70px;
+    display: block;
+    float: left;
+}
+
+.radioLabel input[type=radio]{
+    margin: 5px;
+    appearance: none;
+    border: 1px solid #1fab89;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    transition: all 0.2s;
+    float: left;
+}
+
+.radioLabel input[type=radio]:checked{
+    border: 0.2em solid #ffffff;
+    background-color: #1fab89;
+}
+
+.playSite{
+    margin: 20px auto;
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    text-decoration: none;
+    display: block;
+    background-color: #62d2a2;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+
+.playSite:hover{
+    font-size: 20px;
+}
