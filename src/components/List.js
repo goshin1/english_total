@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setWords } from '../noteSlice';
 import axios from "axios";
@@ -18,6 +18,16 @@ export default function List(){
     const location = useLocation();
     const navigate = useNavigate();
 
+    useEffect(()=>{
+        axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
+            data : {
+                id : location.state.id
+            }
+        })
+        .then((res) => {
+            dispatch(setWords(res.data));
+        });
+    },[]);
 
 
     // https://moong-bee.com/posts/react-drag-and-drop-list-sortable

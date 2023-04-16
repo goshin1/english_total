@@ -6,6 +6,8 @@ import List from './components/List';
 import Add from './components/Add';
 import Edit from './components/Edit';
 import PlaySet from './components/PlaySet';
+import Spell from './components/Spell';
+import SpellFill from './components/SpellFill';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route exact path='/addPage' element={<Add></Add>}></Route>
           <Route exact path='/edit' element={<Edit></Edit>}></Route>
           <Route exact path='/playSet' element={<PlaySet></PlaySet>}></Route>
+          <Route exact path='/spell' element={<Spell></Spell>}></Route>
+          <Route exact path='/spellFill' element={<SpellFill></SpellFill>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
