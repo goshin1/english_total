@@ -13,6 +13,10 @@ export default function SpellFill(){
     const locationLimit = Number(location.state.limit);
     const answers = location.state.answers;
 
+    let blocks = [];
+
+
+
     const useInterval = (callback, delay) => {
         const savedCallback = useRef(); 
 
@@ -30,10 +34,22 @@ export default function SpellFill(){
             }
         }, [delay]);
     }
+
     const [limit, setLimit] = useState(0);
     useInterval(()=>{
         setLimit(limit + 1);
     }, limit < (locationLimit * (words.length - 4)) ? 1000 : null);
+
+
+    if(over <= sucess + fail){
+        blocks = [
+            <div key={'end'} className='card'>
+                <p className='ment'>모든 문제를 풀었습니다.</p>
+            </div>
+        ]; 
+    }
+
+
     return (
         <div>
             {limit + 1}

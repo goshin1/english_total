@@ -41,6 +41,39 @@ export default function PlaySet(){
         return means;
     };
 
+    const randomWord = (word) => {
+        let ans = [word];
+        let leng = words.length; 
+        
+        while(ans.length < 4){
+            let random = Math.floor(Math.random() * leng);
+            if(!words.includes(words[random].word)){
+                ans.push(words[random].word);
+            }
+        }
+        let temp = ans[0];
+        let rad = Math.floor(Math.random() * ans.length);
+        ans[0] = ans[rad];
+        ans[rad] = temp;
+        return ans;
+    };
+
+    const randomChar = (word) => {
+        let cnt = word.length < 4 ? word.length : 4;
+        let ans = [];
+        while(ans.length < cnt){
+            let random = Math.floor(Math.random() * cnt);
+            console.log(word)
+            if(word[random] !== ' '){
+                ans.push(word[random]);
+                word[random] = ' ';
+            }
+        }
+        console.log(ans);
+        return ans
+    }
+
+    // 단어를 보고 뜻을 맞추기
     const quizSet = (target) => {
         let temp = [ ...words ];
         let res = [];
@@ -51,8 +84,6 @@ export default function PlaySet(){
             answers.push(randomMean(temp[num].mean));
             res.push(temp.splice(num, 1)[0]);
         }
-        console.log(res);
-        console.log(answers);
         navigate(target, {
             state : {
                 id : location.state.id,
@@ -63,6 +94,47 @@ export default function PlaySet(){
             }
         })
     };
+
+    // 뜻을 보고 단어를 맞추기
+    const quizMeanSet = (target) => {
+        let temp = [ ...words ];
+        let res = [];
+        let answers = [];
+        let leng = Number(wordRef.current.value) + 4;
+        for(let i = 0; i < leng; i++){
+            let num = Math.floor(Math.random() * temp.length);
+            answers.push(randomWord(temp[num].word));
+            res.push(temp.splice(num, 1)[0]);
+        }
+        navigate(target, {
+            state : {
+                id : location.state.id,
+                count : wordRef.current.value,
+                limit : limit,
+                quiz : res, 
+                answers : answers
+            }
+        })
+    };
+
+    const quizSpellSet = (target) => {
+        let temp = [ ...words ];
+        let res = [];
+        let answers = [];
+        let leng = Number(wordRef.current.value);
+        for(let i = 0; i < leng; i++){
+            let num = Math.floor(Math.random() * temp.length);
+            let word = temp.splice(num, 1)[0];
+            answers.push(randomChar(word.word));
+        }
+        console.log(answers);
+        // navigate(target, {
+        //     state : {
+
+        //     }
+        // })
+    }
+
 
     return <div id='playDiv'>
         <header id='setHeader'>
@@ -87,9 +159,9 @@ export default function PlaySet(){
         </label>
 
         <div id='links'>
-            <div className='playSite' onClick={()=>{quizSet('/spellFill')}}>스펠링 채우기</div>
+            <div className='playSite' onClick={()=>{quizSpellSet ('/spellFill')}}>스펠링 채우기</div>
             <div className='playSite' onClick={()=>{quizSet('/spell')}}>단어 맞추기</div>
-            <div className='playSite' onClick={()=>{quizSet('/')}}>영어단어 맞추기</div>
+            <div className='playSite' onClick={()=>{quizMeanSet('/mean')}}>영어단어 맞추기</div>
         </div>
     </div>
 }
