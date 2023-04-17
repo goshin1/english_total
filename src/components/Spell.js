@@ -8,13 +8,13 @@ export default function Spell(){
     const [words, setWords] = useState(temp);
     const [sucess, setSucess] = useState(0);
     const [fail, setFail] = useState(0);
-    const [over, setOver] = useState(words.length - 4);
+    const over = location.state.count;
     const [answerNum, setAnswerNum] = useState(0);
     const locationLimit = Number(location.state.limit);
     
     const answers = location.state.answers;
     let blocks = [];
-    for(let i = 0; i < words.length; i++){
+    for(let i = 0; i < location.state.count; i++){
         blocks.push(
             <div className="card" key={uuid()}>
                 <div className="word">{words[i].word}</div>
@@ -82,8 +82,8 @@ export default function Spell(){
     const [limit, setLimit] = useState(0);
     useInterval(()=>{
         setLimit(limit + 1);
-    }, limit < (locationLimit * (words.length - 4)) ? 1000 : null);
-
+    }, limit < (locationLimit * location.state.count) ? 1000 : null);
+    console.log(locationLimit * location.state.count)
 
     if(over <= sucess + fail){
         blocks = [
@@ -93,7 +93,7 @@ export default function Spell(){
         ]; 
     }
 
-    if(limit >= locationLimit * (words.length - 4) && over > sucess + fail){
+    if(limit >= locationLimit * location.state.count && over > sucess + fail){
         
         blocks = [
             <div key={'fail'} className='card'>
@@ -112,9 +112,9 @@ export default function Spell(){
         <div id='cardChange'>
             {blocks}
         </div>
-        {limit >= locationLimit * (words.length - 4) ? '' : limit}
+        {limit >= locationLimit * (location.state.count) ? '' : limit}
         <div id='timeBar'>
-            <div id='timeProcess' style={{'marginLeft' : (-300 + ((300 / (locationLimit * (words.length - 4))) * limit)) + "px"}}></div>
+            <div id='timeProcess' style={{'marginLeft' : (-300 + ((300 / (locationLimit * location.state.count)) * limit)) + "px"}}></div>
         </div>
     </div>
 };

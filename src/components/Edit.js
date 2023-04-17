@@ -202,7 +202,15 @@ export default function Edit(){
                                 id : location.state.id,
                                 checkUpdate : checkUpdate
                             }
+                        });
+                        axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
+                            data : {
+                                id : location.state.id
+                            }
                         })
+                        .then((res) => {
+                            dispatch(setWords(res.data));
+                        });
                 }}/>
             </div>
         </header>

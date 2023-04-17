@@ -160,6 +160,7 @@
     border: none;
     transition: all 0.2s;
     cursor: pointer;
+    background-color: rgba(0,0,0,0);
 }
 
 .speaker:active{
@@ -203,6 +204,7 @@
     border: none;
     transition: all 0.2s;
     cursor: pointer;
+    background-color: rgba(0,0,0,0);
 }
 
 .delete:active{
