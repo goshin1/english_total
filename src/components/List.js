@@ -1,5 +1,5 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useState, useRef, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setWords } from '../noteSlice';
 import axios from "axios";
@@ -16,18 +16,19 @@ export default function List(){
     const [search, setSearch] = useState('');
     const dispatch = useDispatch();
     const location = useLocation();
-    const navigate = useNavigate();
 
-    useEffect(()=>{
-        axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
-            data : {
-                id : location.state.id
-            }
-        })
-        .then((res) => {
-            dispatch(setWords(res.data));
-        });
-    },[]);
+    const [order, setOrder] = useState('select num, word, mean from wordlist where mid = $1 order by num asc');
+    const [modal, setModal] = useState(false);
+
+    axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
+        data : {
+            id : location.state.id,
+            text : order
+        }
+    })
+    .then((res) => {
+        dispatch(setWords(res.data));
+    });
 
 
     // https://moong-bee.com/posts/react-drag-and-drop-list-sortable
@@ -146,19 +147,32 @@ export default function List(){
                 
                 <Link to="/edit" className='linkBtn' state={{id : location.state.id}} >단어 <span>편집</span></Link>
                 
-                <label className='linkBtn'>불러오기<button type='file' onClick={async event => {
-                    await axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
-                        data : {
-                            id : location.state.id
-                        }
-                    })
-                    .then((res) => {
-                        dispatch(setWords(res.data));
-                    });
+                <label className='linkBtn'>불러오기<button type='file' onClick={ event => {
+                    setModal(true);
                 }}/></label>
                 <br/>
                 <label id='speedLabel'><span>소리 속도</span><input id='speedBar' type='range' min='0' max='1' step='0.1' ref={ speedRef } /></label>
             </nav>
+        </div>
+        <div id='orderRemocon' style={{display : modal ? 'block' : 'none' } }>
+            <div id='orderNav'>
+                <input type='button' value='추가 오름차순' onClick={()=>{
+                    setOrder('select num, word, mean from wordlist where mid = $1 order by num asc');
+                    setModal(false);
+                }}/>
+                <input type='button' value='추가 내림차순' onClick={()=>{
+                    setOrder('select num, word, mean from wordlist where mid = $1 order by num desc');
+                    setModal(false);
+                }}/><br/>
+                <input type='button' value='단어 오름차순' onClick={()=>{
+                    setOrder('select num, word, mean from wordlist where mid = $1 order by word asc');
+                    setModal(false);
+                }}/>
+                <input type='button' value='단어 내림차순' onClick={()=>{
+                    setOrder('select num, word, mean from wordlist where mid = $1 order by word desc');
+                    setModal(false);
+                }}/>
+            </div>
         </div>
     </div>
 }

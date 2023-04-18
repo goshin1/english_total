@@ -105,9 +105,6 @@ export default function Spell(){
     return <div id='spellDiv'>
         <header id='setHeader'>
             스펠링 맞추기
-            <div id='quizStatus'>
-                문제 갯수 { over } 정답 {sucess} / 오답 {fail}
-            </div>
         </header>
         <div id='cardChange'>
             {blocks}
@@ -115,6 +112,9 @@ export default function Spell(){
         {limit >= locationLimit * (location.state.count) ? '' : limit}
         <div id='timeBar'>
             <div id='timeProcess' style={{'marginLeft' : (-300 + ((300 / (locationLimit * location.state.count)) * limit)) + "px"}}></div>
+        </div>
+        <div id='quizStatus'>
+            문제 갯수 { over } 정답 {sucess} / 오답 {fail}
         </div>
     </div>
 };

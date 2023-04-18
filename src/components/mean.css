@@ -8,12 +8,6 @@
     text-align: left;
 }
 
-#quizStatus{
-    width: 230px;
-    height: 40px;
-    float: right;
-}
-
 #cardChange{
     margin: 30px auto;
     width: 300px;

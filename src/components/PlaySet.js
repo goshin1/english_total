@@ -1,29 +1,30 @@
 import './playSet.css';
-import axios from 'axios';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { setWords } from '../noteSlice';
+import axios from "axios";
 
 export default function PlaySet(){
-    const dispatch = useDispatch();
     const location = useLocation();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const wordRef = useRef();
     const [limit, setLimit] = useState(3);
-    const [words, setWords] = useState([]);
-
-    useEffect(()=>{
+    const words = useSelector(state => {return state.note.words});
+    
+    if(words.length === 0){
         axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
             data : {
-                id : location.state.id
+                id : location.state.id,
+                text : 'select num, word, mean from wordlist where mid = $1 order by num asc'
             }
         })
         .then((res) => {
-            setWords(res.data)
+            dispatch(setWords(res.data));
         });
-    },[]);
-
-
+    }
+    console.log(words);
     const randomMean = (mean) => {
         let means = [mean];
         let leng = words.length; 

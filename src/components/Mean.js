@@ -8,7 +8,7 @@ export default function Mean(){
     const [words, setWords] = useState(temp);
     const [sucess, setSucess] = useState(0);
     const [fail, setFail] = useState(0);
-    const [over, setOver] = useState(location.state.count);
+    const over = location.state.count;
     const [answerNum, setAnswerNum] = useState(0);
     const locationLimit = Number(location.state.limit);
     
@@ -103,9 +103,6 @@ export default function Mean(){
     return <div id='spellDiv'>
         <header id='setHeader'>
             스펠링 맞추기
-            <div id='quizStatus'>
-                문제 갯수 { over } 정답 {sucess} / 오답 {fail}
-            </div>
         </header>
         <div id='cardChange'>
             {blocks}
@@ -113,6 +110,9 @@ export default function Mean(){
         {limit >= locationLimit * (location.state.count) ? '' : limit}
         <div id='timeBar'>
             <div id='timeProcess' style={{'marginLeft' : (-300 + ((300 / (locationLimit * (location.state.count))) * limit)) + "px"}}></div>
+        </div>
+        <div id='quizStatus'>
+            문제 갯수 { over } 정답 {sucess} / 오답 {fail}
         </div>
     </div>
 };

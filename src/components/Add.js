@@ -31,17 +31,28 @@ export default function Add(){
         <p>
             <input type='text' name='mean' placeholder='mean' ref={ meanRef } />
             <button id='wAdd' onClick={ () => {
-                setSaveWords([...saveWords, [wordRef.current.value, meanRef.current.value]]);
-                setSaveText(saveText+("" + wordRef.current.value + "|" + meanRef.current.value + "\n"));
-                axios.post(`${process.env.REACT_APP_ROUTER_HOST}addWord`, {
+                axios.post(`${process.env.REACT_APP_ROUTER_HOST}selectWord`, {
                     data : {
                         id : location.state.id,
-                        word : wordRef.current.value,
-                        mean : meanRef.current.value
+                        word : wordRef.current.value
                     }
                 }).then(res => {
+                    if(res.data !== 'fail'){
+                        setSaveWords([...saveWords, [wordRef.current.value, meanRef.current.value]]);
+                        setSaveText(saveText+("" + wordRef.current.value + "|" + meanRef.current.value + "\n"));
+                        axios.post(`${process.env.REACT_APP_ROUTER_HOST}addWord`, {
+                            data : {
+                                id : location.state.id,
+                                word : wordRef.current.value,
+                                mean : meanRef.current.value
+                            }
+                        }).then(res => {
 
-                });
+                        });
+                    } else {
+                        alert('이미 추가한 단어입니다. 확인해주세요');
+                    }
+                })
             } }>추가</button>    
         </p>
         <div id='wordDiv'>
