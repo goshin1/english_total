@@ -54,6 +54,14 @@ export default function SpellFill(){
         setLimit(limit + 1);
     }, limit < (locationLimit * location.state.count) ? 1000 : null);
 
+    if(limit >= locationLimit * location.state.count && over > sucess + fail){
+        
+        blocks = [
+            <div key={'fail'} className='card'>
+                <p className='ment'>제한시간 안에 풀지 못했습니다.</p>
+            </div>
+        ]
+    }
 
     if(over <= sucess + fail){
         blocks = [
