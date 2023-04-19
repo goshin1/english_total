@@ -13,7 +13,8 @@ export default function Edit(){
     const location = useLocation();
     axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
         data : {
-            id : location.state.id
+            id : location.state.id,
+            text : 'select num, word, mean from wordlist where mid = $1 order by num asc'
         }
     })
     .then((res) => {
@@ -47,13 +48,7 @@ export default function Edit(){
                     </div>
                     <span className='english'>
                         
-                        <div className='overBlock' onMouseOver={event=>{
-                            if(event.currentTarget.innerHTML.length > 40){
-                                event.currentTarget.style.marginLeft = "-"+event.currentTarget.innerHTML.length * 3 + "px";
-                            }
-                        }} onMouseOut={event=>{
-                            event.currentTarget.style.marginLeft = "0px";
-                        }}>
+                        <div className='overBlock'>
                             <input type="text" defaultValue={ words[i].word }
                                 onChange={(event) => {
                                     let num = '' + words[i].num;
@@ -87,13 +82,7 @@ export default function Edit(){
                         });
                     }}></button>
                     <span className='hangul'>
-                        <div className='overBlock' onMouseOver={event=>{
-                                if(event.currentTarget.innerHTML.length > 40){
-                                    event.currentTarget.style.marginLeft = "-"+event.currentTarget.innerHTML.length * 6 + "px";
-                                }
-                            }} onMouseOut={event=>{
-                                event.currentTarget.style.marginLeft = "0px";
-                            }}>
+                        <div className='overBlock'>
                                 <input type="text" defaultValue={ words[i].mean } 
                                 onChange={(event) => {
                                     let num = '' + words[i].num;
@@ -132,17 +121,9 @@ export default function Edit(){
                     event.currentTarget.children[2].style.transform = 'rotate(90deg) translate(-13px, -15px)';
                     event.currentTarget.children[2].style.opacity = '0';
 
-
-                    event.currentTarget.children[3].style.opacity = '1';
-                    event.currentTarget.children[3].style.marginTop = '-40px';
-
-                    event.currentTarget.children[4].style.opacity = '1';
-                    event.currentTarget.children[4].style.marginLeft = '100px';
-                    event.currentTarget.children[4].style.marginTop = '-40px';
-
-                    event.currentTarget.children[5].style.opacity = '1';
-                    event.currentTarget.children[5].style.marginLeft = '200px';
-                    event.currentTarget.children[5].style.marginTop = '-40px';
+                    event.currentTarget.children[3].style.display = 'block';
+                    event.currentTarget.children[4].style.display = 'block';
+                    event.currentTarget.children[5].style.display = 'block';
                 } else {
                     event.currentTarget.style.width = '50px';
                     event.currentTarget.children[0].style.transform = 'none';
@@ -152,16 +133,9 @@ export default function Edit(){
                     event.currentTarget.children[2].style.transform = 'none';
                     event.currentTarget.children[2].style.opacity = '1';
 
-                    event.currentTarget.children[3].style.opacity = '0';
-                    event.currentTarget.children[3].style.marginTop = '0px';
-
-                    event.currentTarget.children[4].style.opacity = '0';
-                    event.currentTarget.children[4].style.marginLeft = '40px';
-                    event.currentTarget.children[4].style.marginTop = '0px';
-                    
-                    event.currentTarget.children[5].style.opacity = '0';
-                    event.currentTarget.children[5].style.marginLeft = '40px';
-                    event.currentTarget.children[5].style.marginTop = '0px';
+                    event.currentTarget.children[3].style.display = 'none';
+                    event.currentTarget.children[4].style.display = 'none';
+                    event.currentTarget.children[5].style.display = 'none';
                 }
                 setRemocon(!remocon);
             }}>

@@ -24,7 +24,6 @@ export default function PlaySet(){
             dispatch(setWords(res.data));
         });
     }
-    console.log(words);
     const randomMean = (mean) => {
         let means = [mean];
         let leng = words.length; 

@@ -14,7 +14,7 @@ export default function Mean(){
     
     const answers = location.state.answers;
     let blocks = [];
-    for(let i = 0; i < location.state.count; i++){
+    for(let i = 0; i < words.length; i++){
         blocks.push(
             <div className="card" key={uuid()}>
                 <div className="word">{words[i].mean}</div>

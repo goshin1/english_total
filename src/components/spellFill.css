@@ -24,11 +24,10 @@
     float: left;
 }
 
-.word{
-    margin: 30px auto;
+.spell{
+    margin: 120px auto 0px;
     width: 100%;
     height: 250px;
-    line-height: 250px;
     font-size: 30px;
     font-weight: bold;
     
@@ -41,9 +40,9 @@
     bottom: 0;
 }
 
-.answerBtn{
+.spellBtn{
     margin: 5px;
-    width: 140px;
+    width: 50px;
     height: 50px;
     min-height: 50px;
     border: none;
@@ -60,7 +59,7 @@
 
 }
 
-.answerBtn:hover{
+.spellBtn:hover{
     font-size: 20px;
 }
 

@@ -14,7 +14,7 @@ export default function Spell(){
     
     const answers = location.state.answers;
     let blocks = [];
-    for(let i = 0; i < location.state.count; i++){
+    for(let i = 0; i < words.length; i++){
         blocks.push(
             <div className="card" key={uuid()}>
                 <div className="word">{words[i].word}</div>
@@ -83,7 +83,6 @@ export default function Spell(){
     useInterval(()=>{
         setLimit(limit + 1);
     }, limit < (locationLimit * location.state.count) ? 1000 : null);
-    console.log(locationLimit * location.state.count)
 
     if(over <= sucess + fail){
         blocks = [
