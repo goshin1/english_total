@@ -103,7 +103,7 @@ export default function Spell(){
     
     return <div id='spellDiv'>
         <header id='setHeader'>
-            스펠링 맞추기
+            단어 맞추기
         </header>
         <div id='cardChange'>
             {blocks}

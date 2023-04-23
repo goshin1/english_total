@@ -23,7 +23,6 @@ export default function Login(){
                 pwd : pwdRef.current.value
             }
         }).then(res => {
-            console.log(res.data.id );
             if(res.data !== 'login fail'){
                 navigate('/list', {
                         state : {

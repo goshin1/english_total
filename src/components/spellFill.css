@@ -27,10 +27,9 @@
 .spell{
     margin: 120px auto 0px;
     width: 100%;
-    height: 250px;
+    height: 200px;
     font-size: 30px;
-    font-weight: bold;
-    
+    font-weight: bold;  
 }
 
 .answers{

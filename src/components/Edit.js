@@ -170,7 +170,7 @@ export default function Edit(){
                     }}/>
                 <input id='selectUpBtn' type='button' value='변경'
                     onClick={(event) => {
-                        console.log(checkUpdate);
+                        console.log('click')
                         axios.post(`${process.env.REACT_APP_ROUTER_HOST}updateWords`, {
                             data : {
                                 id : location.state.id,
