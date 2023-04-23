@@ -99,7 +99,7 @@ export default function Mean(){
             </div>
         ]
     }
-    
+
     return <div id='spellDiv'>
         <header id='setHeader'>
             단어 맞추기
