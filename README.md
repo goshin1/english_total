@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# 영어단어 프로젝트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![](src/imgs/englishnoteLogoExtend.png)
 
-## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 프로젝트 개요
+* 시작하게 된 계기
+  * 영어를 공부하려는데 사용하려는 어플이 왠만해서는 유료였고 이 정도면 직접만들 수 있겠다라는 생각이 프로젝트의 시작점이였습니다.
+* 제작 기간 
+  * 2023 3.1 ~ 4.23(계속해서 기능을 추가할 예정)
+* 주요 기능 및 목적
+  * 단어 저장, 삭제,  편집, 검색, 학습
+  
+## 기술 스택
+* Node.js
+* React
+* Postgresql
+  
+## 개발 과정
+* 3월 1주
+  * 텍스트 파일로 만들고 싶은 영어단어 사이트에 대한 필요 기능을 정리
+  * 사이트의 사용할 메인 컬러를 결정
+  * 카카오 오븐을 통해 UI를 구상(https://ovenapp.io/view/xoABBPXR6YB8W3zMkAuUgavG4hvLyAUC/keNCa)
+  * 로그인 페이지와 목록 페이지를 제작
+  * 요청을 받아 처리할 서버를 제작
+* 3월 2주
+  * 현재 프로젝트의 문제점을 파악
+    - 처음 구상한 단어 저장 및 편집은 서버에 있는 text파일을 불러오고 수정하는 방식, 하지만 이러한 기능은 node.js에서 파일을 읽어올 수는 있어도
+    직접적으로 수정은 힘들었기에 이 방법말고 session을 통해 단어를 저장하고 불러오고 편집하는 방식으로 구현
+    - 영어 번역 기능을 파파고 api를 이용하여 구현하려 했으나, 이 경우 번역은 되나 사용빈도가 정해져있고 결과물도 단순히 번역결과만 나와
+    실제로 학습하면서 검색 기능으로서 쓰기에는 불편하여 사전 사이트 주소의 뒤에 get방식으로 검색하는 단어를 붙여 해당 사전 사이트를 불러오는 방식으로 구현
+  * 파악한 문제점을 개선하는 방향으로 개발
+* 3월 3주
+  * 로그인이나 페이지간 이동을 할 경우 어떻게 정보를 전달 및 유지를 할지 고민
+    - 이 과정에서 cookie, location, session등을 사용해보면서 location이 가장 적합하다고 판단하여 이를 사용하여 구현
+  * 현재 프로젝트의 문제점을 파악
+    - session을 통해 단어를 저장 및 편집하는 과정에서 요청이 제대로 처리되지 않아 오류가 자주 발생
+    session이 아닌 DB(Postgresql)를 통해 처리하기로 결정
+    기존 구조는 React <-> node.js(session을 통해 단어처리) 였다면 React <-> node.js <-> Postgresql로 변경
+  * 단어 추가 페이지 구현
+    - 단어 검색이 가능
+    - 단어 추가가 가능하고 추가하면 추가한 단어가 목록으로 나옴
+  * 단어 목록 페이지 구현
+    - 불러오기 버튼을 통해 단어를 불러오기
+    - 상단에 리모콘 메뉴를 추가 단어 추가, 학습, 편집화면과 연결 및 영어 발음 속도를 조절 가능
+    - 각 단어마다 발음 버튼 및 삭제 버튼을 추가 단어를 누르거나 마우스를 올릴 경우 단어가 움직이며 잘린 부분도 볼 수 있다.
+ * 3월 4주
+  * 구현한 페이지에 기능을 개선
+    - 회원가입 시 같은 아이디가 있는지 조회, 조회를 안하고 가입하려고 할 시 조회하라는 메시지를 출력
+    - 만일 해당 아이디가 있을 경우 입력칸이 글자가 빨간색으로 변환. 다시 조회해서 가능하면 원상복귀
+    - 로그인이나 회원가입시 비밀번호를 확인할 때 hover를 통해 반응할 때만 보이게 설정했지만 이럴 경우 모바일에서 입력칸을 눌렀을 때
+    비밀번호가 보이는 이벤트가 우선적으로 반응하여 입력을 할 수 없어 따로 버튼을 만들어 비밀번호를 볼 수 있게 구현
+    - 목록 및 편집 페이지에서 추가한 단서 내에서 검색이 가능 상단 검색 창에 입력한 값이 포함된 영어단어만이 목록에 나온다.
+ * 4월 1주
+  * 편집 페이지 블록 구현
+    - 각 블록(단어)의 영어, 뜻을 input태그에 값으로 넣고 이를 변경하면 변경된 값을 저장
+    - 왼쪽에는 선택 버튼을 오른쪽에는 개별 삭제버튼을 구현
+  * 편집 페이지 리모콘 기능 추가
+    - 선택 버튼 : 모든 블록을 선택 혹은 선택 해제
+    - 삭제 버튼 : 선택 된 블록을 모두 삭제
+    - 변경 버튼 : 변경한 영어 단어를 저장
+  * 학습 설정 페이지 구현 : 단어 개수, 제한 시간, 학습 방식을 선택(스펠링 채우기, 단어 맞추기, 영어단어 맞추기)
+* 4월 2주
+  * 학습 설정 페이지 기능 구현 : 각 버튼을 누르면 그 에 맞는 문제에 필요한 요소를 전달(문제, 제한시간, 문제 개수, 선택지 등등)
+  * 단어 맞추기 화면 구현 : 문제로 영어단어가 나오면 4가지 선택지 중 맞는 뜻을 선택
+    - 제한시간이 넘어갈 경우 자동으로 종료
+    - 정답과 오답을 기록하여 나오게 한다.
+  * 영어 단어 맞추기 화면 구현 : 위와 반대로 뜻이 나오면 맞는 영어단어를 선택
+    - 제한시간이 넘어갈 경우 자동으로 종료
+    - 정답과 오답을 기록하여 나오게 한다.
+  * 스펠링 채우기 : 중간 중간 비어져 있는 영어단어를 선택지를 통해 채운다
+    - 각 단어별로 스펠링 틀린 때마다 오타를 1씩 증가
+    - 오타가 4이상 나올 경우 해당 단어는 오답처리 후 다음으로 넘어간다
+    - 제한시간이 넘어갈 경우에도 종료
