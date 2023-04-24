@@ -9,56 +9,52 @@ export default function Spell(){
     const [sucess, setSucess] = useState(0);
     const [fail, setFail] = useState(0);
     const over = location.state.count;
-    const [answerNum, setAnswerNum] = useState(0);
     const locationLimit = Number(location.state.limit);
-    
+    console.log(location.state)
     const answers = location.state.answers;
-    let blocks = [];
-    for(let i = 0; i < words.length; i++){
-        blocks.push(
-            <div className="card" key={uuid()}>
-                <div className="word">{words[i].word}</div>
+    let blocks = [
+        <div className="card" key={uuid()}>
+                <div className="word">{words[0].word}</div>
                 <div className="answers">
-                    <input type="button" value={answers[answerNum][0]} className="answerBtn" onClick={(event)=>{
-                        if(words[i].mean === answers[answerNum][0]){
+                    <input type="button" value={answers[0][0]} className="answerBtn" onClick={(event)=>{
+                        if(words[0].mean === answers[0][0]){
                             setSucess(sucess + 1);
                         }else{
                             setFail(fail+ 1);
                         }
-                        setWords(words.filter(word => word.num !== words[i].num));
-                        setAnswerNum(answerNum + 1);
+                        setTime(0);
+                        setWords(words.filter(word => word.num !== words[0].num));
                     }}/>
-                    <input type="button" value={answers[answerNum][1]} className="answerBtn" onClick={(event)=>{
-                        if(words[i].mean === answers[answerNum][1]){
+                    <input type="button" value={answers[0][1]} className="answerBtn" onClick={(event)=>{
+                        if(words[0].mean === answers[0][1]){
                             setSucess(sucess + 1);
                         }else{
                             setFail(fail+ 1);
                         }
-                        setWords(words.filter(word => word.num !== words[i].num));
-                        setAnswerNum(answerNum + 1);
+                        setTime(0);
+                        setWords(words.filter(word => word.num !== words[0].num));
                     }}/><br/>
-                    <input type="button" value={answers[answerNum][2]} className="answerBtn" onClick={(event)=>{
-                        if(words[i].mean === answers[answerNum][2]){
+                    <input type="button" value={answers[0][2]} className="answerBtn" onClick={(event)=>{
+                        if(words[0].mean === answers[0][2]){
                             setSucess(sucess + 1);
                         }else{
                             setFail(fail+ 1);
                         }
-                        setWords(words.filter(word => word.num !== words[i].num));
-                        setAnswerNum(answerNum + 1);
+                        setTime(0);
+                        setWords(words.filter(word => word.num !== words[0].num));
                     }}/>
-                    <input type="button" value={answers[answerNum][3]} className="answerBtn" onClick={(event)=>{
-                        if(words[i].mean === answers[answerNum][3]){
+                    <input type="button" value={answers[0][3]} className="answerBtn" onClick={(event)=>{
+                        if(words[0].mean === answers[0][3]){
                             setSucess(sucess + 1);
                         }else{
                             setFail(fail+ 1);
                         }
-                        setWords(words.filter(word => word.num !== words[i].num));
-                        setAnswerNum(answerNum + 1);
+                        setTime(0);
+                        setWords(words.filter(word => word.num !== words[0].num));
                     }}/>
                 </div>
             </div>
-        )
-    }
+    ];
     
 
     //https://mingule.tistory.com/65
@@ -79,10 +75,22 @@ export default function Spell(){
             }
         }, [delay]); // delay가 바뀔 때마다 새로 실행된다.
     }
-    const [limit, setLimit] = useState(0);
+    const [time, setTime] = useState(0);
+    const [count, setCount] = useState(0);
+    console.log(words);
     useInterval(()=>{
-        setLimit(limit + 1);
-    }, limit < (locationLimit * location.state.count) ? 1000 : null);
+        setTime(time + 1);
+    }, time < locationLimit ? 1000 : null);
+    if(time === location.state.limit){
+        console.log(words.length)
+        if(words.length > 0){
+            setWords(words.filter(word => word.num !== words[0].num));
+            setTime(0);
+            setCount(count + 1);
+        } else {
+            setTime('끝났습니다.');
+        }
+    }
 
     if(over <= sucess + fail){
         blocks = [
@@ -92,14 +100,13 @@ export default function Spell(){
         ]; 
     }
 
-    if(limit >= locationLimit * location.state.count && over > sucess + fail){
-        
-        blocks = [
-            <div key={'fail'} className='card'>
-                <p className='ment'>제한시간 안에 풀지 못했습니다.</p>
-            </div>
-        ]
-    }
+    // if(over > sucess + fail && count > 0){ 
+    //     blocks = [
+    //         <div key={'fail'} className='card'>
+    //             <p className='ment'>제한시간 안에 풀지 못했습니다.</p>
+    //         </div>
+    //     ]
+    // }
     
     return <div id='spellDiv'>
         <header id='setHeader'>
@@ -108,9 +115,9 @@ export default function Spell(){
         <div id='cardChange'>
             {blocks}
         </div>
-        {limit >= locationLimit * (location.state.count) ? '' : limit}
+        {time >= locationLimit * (location.state.count) ? '' : time}
         <div id='timeBar'>
-            <div id='timeProcess' style={{'marginLeft' : (-300 + ((300 / (locationLimit * location.state.count)) * limit)) + "px"}}></div>
+            <div id='timeProcess' style={{'marginLeft' : (-300 + ((300 / (locationLimit * location.state.count)) * time)) + "px"}}></div>
         </div>
         <div id='quizStatus'>
             문제 갯수 { over } 정답 {sucess} / 오답 {fail}

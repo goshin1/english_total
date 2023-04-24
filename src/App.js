@@ -9,6 +9,7 @@ import PlaySet from './components/PlaySet';
 import SpellFill from './components/SpellFill';
 import Spell from './components/Spell';
 import Mean from './components/Mean';
+import Interval from './components/Interval';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route exact path='/spellFill' element={<SpellFill></SpellFill>}></Route>
           <Route exact path='/spell' element={<Spell></Spell>}></Route>
           <Route exact path='/mean' element={<Mean></Mean>}></Route>
+          <Route exact path='/interval' element={<Interval></Interval>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
