@@ -14,10 +14,8 @@ export default function SpellFill(){
     const [select, setSelect] = useState(0);
 
     const [selWord, setSelWord] = useState(answers.length > 0 ? answers[0].word : '');
-    const [mean, setMean] = useState(words.length > 0 ? words[0].mean : '');
     
     const [typo, setTypo] = useState(0);
-
     /*
         answers
         - ans : 섞이게 된 스펠링
@@ -32,42 +30,38 @@ export default function SpellFill(){
         for(let i = 0; i < answers[0].ans.length; i++){
             ansBlocks.push(
                 <input type='button' key={uuid()} value={answers[0].ans[i]} className='spellBtn' onClick={(event) => {
-
                     if(event.currentTarget.value === words[0].word[select]){
                         setSelect(select + 1);
-                        setSelWord(selWord.replace('_', event.currentTarget.value));
-                        if(select === (words[0].word.length > 4 ? 4 : words[0].word.length)){
-                            setSelWord(answers[answers.length > 1 ? 1 : 0].word);
-                            setMean(words[answers.length > 1 ? 1 : 0].mean);
-                            setAnswers(answers.filter(ans => ans.ans !== answers[0].ans));
+                        answers[0].word = answers[0].word.replace('_', event.currentTarget.value);
+                        setAnswers(answers);
+                        if(select + 1 === (words[0].word.length > 5 ? 5 : words[0].word.length)){
+                            
+                            setAnswers(answers.filter(ans => ans.num !== answers[0].num));
                             setWords(words.filter(word => word.word !== words[0].word));
                             setSelect(0);
                             setTypo(0);
+                            setTime(0);
                         }
                     }else{
                         setTypo(typo + 1);
                         if(typo > 3){
-                            console.log('pass');
-                            setSelWord(answers[answers.length > 1 ? 1 : 0].word);
-                            setMean(words[answers.length > 1 ? 1 : 0].mean);
-                            setAnswers(answers.filter(ans => ans.ans !== answers[0].ans));
+                            setAnswers(answers.filter(ans => ans.num !== answers[0].num));
                             setWords(words.filter(word => word.word !== words[0].word));
-                            console.log(answers);
-                            console.log(words);
                             setFail(fail + 1);
                             setSelect(0);
                             setTypo(0);
+                            setTime(0);
                         }
                     }
                 }}/>
             )
         }
-
+        // 답안을 선택 시 변경되게 이는 useState를 써서 구현하면 될 듯
         blocks = [
             <div className="card" key={uuid()}>
                     <div className="spell">
-                        <p>{ selWord }</p>
-                        <p>{ mean }</p>
+                        <p>{ answers[0].word }</p>
+                        <p>{ words[0].mean }</p>
                     </div>
                     <div className="answers">
                         {ansBlocks}
@@ -96,25 +90,28 @@ export default function SpellFill(){
         }, [delay]);
     }
 
-    const [limit, setLimit] = useState(0);
+    const [time, setTime] = useState(0);
+    const [count, setCount] = useState(0);
     useInterval(()=>{
-        setLimit(limit + 1);
-    }, limit < (locationLimit * location.state.count) ? 1000 : null);
+        setTime(time + 1);
+    }, words.length > 0 ? 1000 : null);
 
-    if(limit >= locationLimit * location.state.count && answers.length !== 0){
-        
-        blocks = [
-            <div key={'fail'} className='card'>
-                <p className='ment'>제한시간 안에 풀지 못했습니다.</p>
-            </div>
-        ]
+    if(time === location.state.limit + 1){
+        if(words.length >= 0){
+            setAnswers(answers.filter(ans => ans.num !== answers[0].num));
+            setWords(words.filter(word => word.num !== words[0].num));
+            setTime(0);
+            setFail(fail + 1);
+            setCount(count + 1);
+        } else {
+            setTime('끝났습니다.');
+        }
     }
 
-    if(answers.length === 0){
+    if(words.length <= 0){
         blocks = [
             <div key={'end'} className='card'>
-                <p className='ment'>모든 문제를 풀었습니다.</p>
-                정답 : { over - fail } 오답 : { fail }
+                <p className='ment'>정답 { over - fail } 오답 { fail }</p>
             </div>
         ]; 
     }
@@ -129,10 +126,10 @@ export default function SpellFill(){
                 {blocks}
             </div>
             <div id='timeBar'>
-                <div id='timeProcess' style={{'marginLeft' : (-300 + ((300 / (locationLimit * location.state.count)) * limit)) + "px"}}></div>
+                <div id='timeProcess' style={{'marginLeft' : (-300 + ((300 / locationLimit) * time)) + "px"}}></div>
             </div>
             <div id='quizStatus'>
-                문제 갯수 { over } 오타 { typo }
+                문제 갯수 { over } 남은 문제 { words.length } 오타 { typo } 
             </div>
         </div>
     )

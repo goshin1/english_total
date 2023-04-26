@@ -48,7 +48,7 @@ export default function Sign(){
         </label>
         
         <label className='pswLabel' id='pswChLabel'>
-            <input type="password" id="pswCh" name="pswCh" placeholder='Password Check' ref={ pwdRef } autoComplete="off"/>
+            <input type="password" id="pswCh" name="pswCh" placeholder='Password Check' ref={ pwdCheckRef } autoComplete="off"/>
             <input type='button' className='typeBtn' onClick={(event)=>{
                 if(pwd){
                     document.getElementById('pswCh').type = "text";

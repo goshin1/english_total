@@ -58,7 +58,7 @@ export default function PlaySet(){
         return ans;
     };
 
-    const randomChar = (word) => {
+    const randomChar = (word, num) => {
         let cnt = word.length < 5 ? word.length : 5;
         let ans = [];
         while(ans.length < cnt){
@@ -69,7 +69,7 @@ export default function PlaySet(){
             }
         }
         ans.sort(()=>Math.random() - 0.5)
-        return {word : word, ans : ans};
+        return { num : num, word : word, ans : ans};
     }
 
     // 단어를 보고 뜻을 맞추기
@@ -124,7 +124,7 @@ export default function PlaySet(){
         for(let i = 0; i < leng; i++){
             let num = Math.floor(Math.random() * temp.length);
             let word = temp.splice(num, 1)[0];
-            answers.push(randomChar(word.word));
+            answers.push(randomChar(word.word, word.num));
             res.push(word);
         }
 
