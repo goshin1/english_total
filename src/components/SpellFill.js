@@ -12,9 +12,8 @@ export default function SpellFill(){
     const locationLimit = Number(location.state.limit);
     const [answers, setAnswers] = useState(location.state.answers);
     const [select, setSelect] = useState(0);
-
+    const [wrong, setWrong] = useState([]);
     const [selWord, setSelWord] = useState(answers.length > 0 ? answers[0].word : '');
-    
     const [typo, setTypo] = useState(0);
     /*
         answers
@@ -45,6 +44,7 @@ export default function SpellFill(){
                     }else{
                         setTypo(typo + 1);
                         if(typo > 3){
+                            setWrong([...wrong, words[0]]);
                             setAnswers(answers.filter(ans => ans.num !== answers[0].num));
                             setWords(words.filter(word => word.word !== words[0].word));
                             setFail(fail + 1);
@@ -98,6 +98,7 @@ export default function SpellFill(){
 
     if(time === location.state.limit + 1){
         if(words.length >= 0){
+            setWrong([...wrong, words[0]]);
             setAnswers(answers.filter(ans => ans.num !== answers[0].num));
             setWords(words.filter(word => word.num !== words[0].num));
             setTime(0);
@@ -108,10 +109,24 @@ export default function SpellFill(){
         }
     }
 
+
     if(words.length <= 0){
+        let wrongBlock = [];
+        for(let i = 0; i < wrong.length; i++){
+            wrongBlock.push(
+                <div className='wrong' key={uuid()}>
+                    <span> { wrong[i].word } </span>
+                    <span> { wrong[i].mean } </span>
+                </div>
+            )
+        }
+
         blocks = [
             <div key={'end'} className='card'>
                 <p className='ment'>정답 { over - fail } 오답 { fail }</p>
+                <div id='wrongBox'>
+                    {wrongBlock}
+                </div>
             </div>
         ]; 
     }

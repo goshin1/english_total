@@ -49,6 +49,8 @@ export default function Add(){
                         }).then(res => {
 
                         });
+                        wordRef.current.value = '';
+                        meanRef.current.value = '';
                     } else {
                         alert('이미 추가한 단어입니다. 확인해주세요');
                     }

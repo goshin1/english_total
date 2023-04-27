@@ -63,8 +63,8 @@
 
 .ment{
     width: 100%;
-    height: 300px;
-    line-height: 300px;
+    height: 100px;
+    line-height: 100px;
 }
 
 #timeBar{
@@ -82,4 +82,42 @@
     background-color: #62d2a2;
     transition: all 1s;
     border-radius: 5px;
+}
+
+
+#wrongBox{
+    width: 100%;
+    height: 300px;
+    overflow : auto;
+}
+
+#wrongBox::-webkit-scrollbar{
+    display: none;
+}
+
+.wrong{
+    width: 290px;
+    line-height: 20px;
+    margin: 5px 0px;
+    height: auto;
+    border-bottom: 1px solid #62d2a2;
+    word-wrap: break-word;
+    text-align: left;
+    display: inline-block;
+}
+
+.wrong > span:nth-child(1){
+    width: 120px;
+    padding: 5px 10px;
+    float: left;
+    display: block;
+}
+
+.wrong > span:nth-child(2){
+    width: 120px;
+    padding: 5px 10px;
+    float: right;
+    text-align: right;
+    display: block;
+    
 }

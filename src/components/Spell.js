@@ -5,12 +5,14 @@ import uuid from 'react-uuid';
 export default function Spell(){
     const location = useLocation();
     let temp = location.state.quiz;
-    const [words, setWords] = useState(temp.slice(0, temp.length - 4));
+    const [words, setWords] = useState(temp);
     const [sucess, setSucess] = useState(0);
     const [fail, setFail] = useState(0);
+    const [wrong, setWrong] = useState([]);
     const over = location.state.count;
     const locationLimit = Number(location.state.limit);
     const answers = location.state.answers;
+
     let blocks = [];
     if(words.length > 0){
         blocks = [
@@ -22,6 +24,7 @@ export default function Spell(){
                                 setSucess(sucess + 1);
                             }else{
                                 setFail(fail+ 1);
+                                setWrong([...wrong, words[0]]);
                             }
                             setTime(0);
                             setWords(words.filter(word => word.num !== words[0].num));
@@ -31,6 +34,7 @@ export default function Spell(){
                                 setSucess(sucess + 1);
                             }else{
                                 setFail(fail+ 1);
+                                setWrong([...wrong, words[0]]);
                             }
                             setTime(0);
                             setWords(words.filter(word => word.num !== words[0].num));
@@ -40,6 +44,7 @@ export default function Spell(){
                                 setSucess(sucess + 1);
                             }else{
                                 setFail(fail+ 1);
+                                setWrong([...wrong, words[0]]);
                             }
                             setTime(0);
                             setWords(words.filter(word => word.num !== words[0].num));
@@ -49,6 +54,7 @@ export default function Spell(){
                                 setSucess(sucess + 1);
                             }else{
                                 setFail(fail+ 1);
+                                setWrong([...wrong, words[0]]);
                             }
                             setTime(0);
                             setWords(words.filter(word => word.num !== words[0].num));
@@ -95,9 +101,22 @@ export default function Spell(){
     }
 
     if(words.length <= 0){
+        let wrongBlock = [];
+        for(let i = 0; i < wrong.length; i++){
+            wrongBlock.push(
+                <div className='wrong' key={uuid()}>
+                    <span> { wrong[i].word } </span>
+                    <span> { wrong[i].mean } </span>
+                </div>
+            )
+        }
+
         blocks = [
             <div key={'end'} className='card'>
                 <p className='ment'>모든 문제를 풀었습니다.</p>
+                <div id='wrongBox'>
+                    {wrongBlock}
+                </div>
             </div>
         ]; 
     }

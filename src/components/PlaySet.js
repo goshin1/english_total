@@ -77,7 +77,7 @@ export default function PlaySet(){
         let temp = [ ...words ];
         let res = [];
         let answers = [];
-        let leng = Number(wordRef.current.value) + 4;
+        let leng = Number(wordRef.current.value);
         for(let i = 0; i < leng; i++){
             let num = Math.floor(Math.random() * temp.length);
             answers.push(randomMean(temp[num].mean));
@@ -99,7 +99,7 @@ export default function PlaySet(){
         let temp = [ ...words ];
         let res = [];
         let answers = [];
-        let leng = Number(wordRef.current.value) + 4;
+        let leng = Number(wordRef.current.value);
         for(let i = 0; i < leng; i++){
             let num = Math.floor(Math.random() * temp.length);
             answers.push(randomWord(temp[num].word));
@@ -139,7 +139,8 @@ export default function PlaySet(){
         })
     }
 
-
+    // 오답화면 제작
+    
     return <div id='playDiv'>
         <header id='setHeader'>
             단어 학습 설정

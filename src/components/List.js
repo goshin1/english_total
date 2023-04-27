@@ -85,7 +85,7 @@ export default function List(){
                             speech(words[i].word);
                         }}></button>
                         <span className='english'>
-                            <div className='overBlock' onMouseOver={event=>{
+                            {/* <div className='overBlock' onMouseOver={event=>{
                                 if(event.currentTarget.innerHTML.length * 5 > 40){
                                     event.currentTarget.style.marginLeft = "-"+event.currentTarget.innerHTML.length * 6 + "px";
                                 }
@@ -93,7 +93,8 @@ export default function List(){
                                 event.currentTarget.style.marginLeft = "0px";
                             }}>
                                 { words[i].word }
-                            </div>
+                            </div> */}
+                            { words[i].word }
                         </span>
                         <button className='delete' onClick={async () => {
                             await axios.post(`${process.env.REACT_APP_ROUTER_HOST}delete`, {
@@ -113,7 +114,7 @@ export default function List(){
                             });
                         }}></button>
                         <span className='hangul'>
-                            <div className='overBlock' onMouseOver={event=>{
+                            {/* <div className='overBlock' onMouseOver={event=>{
                                     if(event.currentTarget.innerHTML.length * 5 > 40){
                                         event.currentTarget.style.marginLeft = "-"+event.currentTarget.innerHTML.length * 6 + "px";
                                     }
@@ -121,7 +122,8 @@ export default function List(){
                                     event.currentTarget.style.marginLeft = "0px";
                                 }}>
                                     { words[i].mean }
-                            </div>
+                            </div> */}
+                            { words[i].mean }
                         </span>
                         
                     </div>
