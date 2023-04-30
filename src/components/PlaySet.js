@@ -137,7 +137,25 @@ export default function PlaySet(){
                 answers : answers
             }
         })
-    }
+    };
+
+    const quizWordSet = (target) => {
+        let temp = [ ...words ];
+        let res = [];
+        let leng = Number(wordRef.current.value);
+        for(let i = 0; i < leng; i++){
+            let num = Math.floor(Math.random() * temp.length);
+            res.push(temp.splice(num, 1)[0]);
+        }
+        navigate(target, {
+            state : {
+                id : location.state.id,
+                count : wordRef.current.value,
+                limit : limit,
+                quiz : res
+            }
+        })
+    };
 
     // 오답화면 제작
     
@@ -167,6 +185,7 @@ export default function PlaySet(){
             <div className='playSite' onClick={()=>{quizSpellSet ('/spellFill')}}>스펠링 채우기</div>
             <div className='playSite' onClick={()=>{quizSet('/spell')}}>단어 맞추기</div>
             <div className='playSite' onClick={()=>{quizMeanSet('/mean')}}>영어단어 맞추기</div>
+            <div className='playSite' onClick={()=>{quizMeanSet('/spellInsert')}}>영어 맞추기</div>
             <div className='playSite' onClick={()=>{quizSet('/interval')}}>단어별 시간제한 테스트</div>
         </div>
     </div>

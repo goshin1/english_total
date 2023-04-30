@@ -134,7 +134,6 @@
     width: 100%;
     min-width: 290px;
     line-height: 20px;
-    margin: 5px 0px;
     height: auto;
     border-bottom: 1px solid #62d2a2;
     word-wrap: break-word;
@@ -166,15 +165,16 @@
 }
 
 .englishBlock span{
-    margin: 5px;
+    margin: 10px 0px 0px;
     width: 100px;
+    font-size: 12px;
     overflow: hidden;
     display: block;
     position: relative;
 }
 
 .english{
-    text-indent: 10px;
+    text-indent: 5px;
     float: left;
 }
 

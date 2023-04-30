@@ -47,22 +47,19 @@ export default function Edit(){
                         
                     </div>
                     <span className='english'>
-                        
-                        <div className='overBlock'>
-                            <input type="text" defaultValue={ words[i].word }
-                                onChange={(event) => {
-                                    let num = '' + words[i].num;
-                                    let temp = Object.assign({}, words[i]);
-                                    temp.word = event.currentTarget.value;
+                        <input type="text" defaultValue={ words[i].word }
+                            onChange={(event) => {
+                                let num = '' + words[i].num;
+                                let temp = Object.assign({}, words[i]);
+                                temp.word = event.currentTarget.value;
 
-                                    if(!update.includes(num)){
-                                        setUpdate([ ...update, num]);
-                                        dispatch(updateWord(temp));
-                                    } else {
-                                        dispatch(updateModifyWord(temp));
-                                    }
-                                }}/>
-                        </div>
+                                if(!update.includes(num)){
+                                    setUpdate([ ...update, num]);
+                                    dispatch(updateWord(temp));
+                                } else {
+                                    dispatch(updateModifyWord(temp));
+                                }
+                            }}/>
                     </span>
                     <button className='delete' onClick={async () => {
                         await axios.post(`${process.env.REACT_APP_ROUTER_HOST}delete`, {
@@ -82,22 +79,20 @@ export default function Edit(){
                         });
                     }}></button>
                     <span className='hangul'>
-                        <div className='overBlock'>
-                                <input type="text" defaultValue={ words[i].mean } 
-                                onChange={(event) => {
-                                    let num = '' + words[i].num;
-                                    let temp = Object.assign({}, words[i]);
-                                    temp.mean = event.currentTarget.value;
-                                    if(!update.includes(num)){
-                                        setUpdate([ ...update, num]);
-                                        dispatch(updateWord(temp));
-                                        
-                                    } else {
-                                        dispatch(updateModifyWord(temp));
-                                    }
+                        <input type="text" defaultValue={ words[i].mean } 
+                            onChange={(event) => {
+                                let num = '' + words[i].num;
+                                let temp = Object.assign({}, words[i]);
+                                temp.mean = event.currentTarget.value;
+                                if(!update.includes(num)){
+                                    setUpdate([ ...update, num]);
+                                    dispatch(updateWord(temp));
                                     
-                                }}/>
-                        </div>
+                                } else {
+                                    dispatch(updateModifyWord(temp));
+                                }
+                                
+                            }}/>
                     </span>
                     
                 </div>

@@ -85,15 +85,6 @@ export default function List(){
                             speech(words[i].word);
                         }}></button>
                         <span className='english'>
-                            {/* <div className='overBlock' onMouseOver={event=>{
-                                if(event.currentTarget.innerHTML.length * 5 > 40){
-                                    event.currentTarget.style.marginLeft = "-"+event.currentTarget.innerHTML.length * 6 + "px";
-                                }
-                            }} onMouseOut={event=>{
-                                event.currentTarget.style.marginLeft = "0px";
-                            }}>
-                                { words[i].word }
-                            </div> */}
                             { words[i].word }
                         </span>
                         <button className='delete' onClick={async () => {
@@ -114,15 +105,6 @@ export default function List(){
                             });
                         }}></button>
                         <span className='hangul'>
-                            {/* <div className='overBlock' onMouseOver={event=>{
-                                    if(event.currentTarget.innerHTML.length * 5 > 40){
-                                        event.currentTarget.style.marginLeft = "-"+event.currentTarget.innerHTML.length * 6 + "px";
-                                    }
-                                }} onMouseOut={event=>{
-                                    event.currentTarget.style.marginLeft = "0px";
-                                }}>
-                                    { words[i].mean }
-                            </div> */}
                             { words[i].mean }
                         </span>
                         

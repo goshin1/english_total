@@ -1,11 +1,12 @@
 .englishBlock input{
-    line-height: 30px;
+    margin-top: -5px;
+    line-height: 20px;
     border: none;
     background-color: rgba(0,0,0,0);
 }
 
 .englishCheck{
-    margin : 12px 5px;
+    margin : 12px 5px 0px 10px;
     width: 20px;
     height: 20px;
     float: left;

@@ -1,0 +1,165 @@
+#setHeader{
+    width: 100%;
+    background-color: #1fab89;
+    height: 40px;
+    line-height: 40px;
+    text-indent: 10px;
+    color: #d7fbe8 ;
+    text-align: left;
+}
+
+#spellInsertDiv{
+    width: 100%;
+}
+
+#insertChange{
+    margin: 30px auto;
+    width: 300px;
+    height: 400px;
+    
+}
+
+.card{
+    margin: 0px auto;
+    width: 300px;
+    height: 450px;
+    background-color: #ffffff;
+}
+
+.spellHint{
+    margin: 50px auto 0px;
+    width: 100%;
+    height: 100px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.answersInsert{
+    width: 100%;
+    height: 300px;
+    display: block;
+    bottom: 0;
+}
+
+.speakerHint{
+    margin-top: -5px;
+    margin-left: 30px;
+    width: 40px;
+    height: 40px;
+    float: left;
+    background-image: url("../imgs/speakIcon.png");
+    background-size: 40px;
+    border: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0);
+}
+
+.speakerHint:active{
+    background-image: url("../imgs/speakIconOn.png");
+}
+
+.insertMent, .insertHint{
+    margin: 0 auto;
+    width: 250px;
+    height: 30px;
+}
+
+.insertMent{
+    border-bottom: 1px solid #1fab89;
+    margin-bottom: 30px;
+}
+
+.answerMent{
+    width: 250px;
+    line-height: 20px;
+    border: none;
+    border-bottom: 1px solid #1fab89;
+}
+
+.inserts{
+    margin: 10px auto;
+    width: 250px;
+    height: 30px;
+}
+
+.insertBtn, #submitBtn{
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    border: none;
+    color: #ffffff;
+    background-color: #62d2a2;
+    border-radius: 5px;
+    cursor : pointer;
+    transition: all 0.2s;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    white-space : normal;
+    float: left;
+}
+
+#submitBtn{
+    width: 140px;
+}
+
+.insertBtn:hover, #submitBtn:hover{
+    font-size: 20px;
+}
+
+#wrongBox{
+    width: 100%;
+    height: 300px;
+    overflow : auto;
+}
+
+#wrongBox::-webkit-scrollbar{
+    display: none;
+}
+
+.wrong{
+    width: 290px;
+    line-height: 20px;
+    margin: 5px 0px;
+    height: auto;
+    border-bottom: 1px solid #62d2a2;
+    word-wrap: break-word;
+    text-align: left;
+    display: inline-block;
+}
+
+.wrong > span:nth-child(1){
+    width: 120px;
+    padding: 5px 10px;
+    float: left;
+    display: block;
+}
+
+.wrong > span:nth-child(2){
+    width: 120px;
+    padding: 5px 10px;
+    float: right;
+    text-align: right;
+    display: block;    
+}
+
+#insertBar{
+    margin: 80px 15px;
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    overflow: hidden;
+    bottom: 0;
+    float: left;
+}
+
+#timeProcess{
+    margin-left: -300px;
+    width: 300px;
+    height: 30px;
+    background-color: #62d2a2;
+    transition: all 1s;
+    border-radius: 5px;
+}
