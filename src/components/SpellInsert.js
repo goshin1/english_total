@@ -8,7 +8,7 @@ export default function SpellInsert(){
     const [words, setWords] = useState(location.state.quiz);
     const [ment, setMent] = useState('');
     const [wrong, setWrong] = useState([]);
-
+    const locationLimit = Number(location.state.limit);
     let voices = [];
     const setVoliceList = () => {
         voices = window.speechSynthesis.getVoices();
@@ -153,6 +153,9 @@ export default function SpellInsert(){
                         <input type='button' className='insertBtn' value='z' onClick={(event)=>{
                             setMent(ment + event.currentTarget.value);
                         }}/>
+                        <input type='button' className='insertBtn' value=' ' onClick={(event)=>{
+                            setMent(ment + event.currentTarget.value);
+                        }}/>
                         <input type='button' className='insertBtn' value='◀' onClick={(event)=>{
                             setMent(ment.slice(0, ment.length - 1));
                         }}/>
@@ -192,7 +195,8 @@ export default function SpellInsert(){
         setTime(time + 1);
     }, words.length > 0 ? 1000 : null);
 
-    if(time >= 10){
+    if(time >= locationLimit + 1){
+
         setTime(0);
         setWrong([...wrong, words[0]]);
         setWords(words.filter(word=>word.num !== words[0].num));
@@ -227,7 +231,7 @@ export default function SpellInsert(){
         <div id='insertChange'>
             {blocks}
             <div id='insertBar'>
-                <div id='timeProcess' style={{'marginLeft' : (-300 + ((300 / 10) * time)) + "px"}}></div>
+                <div id='timeProcess' style={{'marginLeft' : (-300 + ((300 / locationLimit) * time)) + "px"}}></div>
             </div>
         </div>
     </div>

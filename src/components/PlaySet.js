@@ -186,7 +186,6 @@ export default function PlaySet(){
             <div className='playSite' onClick={()=>{quizSet('/spell')}}>단어 맞추기</div>
             <div className='playSite' onClick={()=>{quizMeanSet('/mean')}}>영어단어 맞추기</div>
             <div className='playSite' onClick={()=>{quizMeanSet('/spellInsert')}}>영어 맞추기</div>
-            <div className='playSite' onClick={()=>{quizSet('/interval')}}>단어별 시간제한 테스트</div>
         </div>
     </div>
 }

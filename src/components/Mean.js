@@ -5,7 +5,7 @@ import uuid from 'react-uuid';
 export default function Spell(){
     const location = useLocation();
     let temp = location.state.quiz;
-    const [words, setWords] = useState(temp.slice(0, temp.length - 4));
+    const [words, setWords] = useState(temp);
     const [sucess, setSucess] = useState(0);
     const [fail, setFail] = useState(0);
     const [wrong, setWrong] = useState([]);
@@ -91,6 +91,7 @@ export default function Spell(){
 
     if(time === location.state.limit + 1){
         if(words.length >= 0){
+            setWrong([...wrong, words[0]])
             setWords(words.filter(word => word.num !== words[0].num));
             setTime(0);
             setFail(fail + 1);
