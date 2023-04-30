@@ -2,12 +2,13 @@ import './spellInsert.css'
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import uuid from 'react-uuid';
-
+//<p className='ment'>정답 { over - fail } 오답 { fail }</p>
 export default function SpellInsert(){
     const location = useLocation();
     const [words, setWords] = useState(location.state.quiz);
     const [ment, setMent] = useState('');
     const [wrong, setWrong] = useState([]);
+    const over = Number(location.state.count);
     const locationLimit = Number(location.state.limit);
     let voices = [];
     const setVoliceList = () => {
@@ -205,7 +206,8 @@ export default function SpellInsert(){
 
     if(words.length <= 0){
         let wrongBlock = [];
-        for(let i = 0; i < wrong.length; i++){
+        let wrongLeng = wrong.length;
+        for(let i = 0; i < wrongLeng; i++){
             wrongBlock.push(
                 <div className='wrong' key={uuid()}>
                     <span> { wrong[i].word } </span>
@@ -216,7 +218,7 @@ export default function SpellInsert(){
 
         blocks = [
             <div key={'end'} className='card'>
-                <p className='ment'>모든 문제를 풀었습니다.</p>
+                <p className='ment'>정답 { over - wrongLeng } 오답 { wrongLeng }</p>
                 <div id='wrongBox'>
                     {wrongBlock}
                 </div>

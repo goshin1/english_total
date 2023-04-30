@@ -7,14 +7,14 @@
 
 .englishCheck{
     margin : 12px 5px 0px 10px;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     float: left;
     border: 1px solid #1fab89;
     border-radius: 50%;
     background-position-x: center;
     background-position-y: -2px;
-    background-size: 25px;
+    background-size: 20px;
     transition: all 0.2s;
 }
 
