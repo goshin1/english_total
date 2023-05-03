@@ -3,6 +3,8 @@ import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setWords } from '../noteSlice';
 import axios from "axios";
+import Moon from '../imgs/Moon.png';
+import Sun from '../imgs/Sun.png'
 import './list.css';
 
 // 예시에서는 useState를 통해 드래그 드롭 할 때 마다 변경해주지만 여기서는
@@ -19,6 +21,7 @@ export default function List(){
 
     const [order, setOrder] = useState('select num, word, mean from wordlist where mid = $1 order by num asc');
     const [modal, setModal] = useState(false);
+    const [thema, setThema] = useState(location.state.thema);
 
     axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
         data : {
@@ -73,6 +76,14 @@ export default function List(){
         window.speechSynthesis.speak(utterThis);
     }
 
+    if(thema){
+        document.body.style.backgroundColor = '#ffffff';
+        document.body.style.color = '#202020';
+    } else {
+        document.body.style.backgroundColor = '#202020';
+        document.body.style.color = '#ffffff';
+    }
+
     const englishBlocks = [];
     if(words.length > 0){
         
@@ -117,7 +128,7 @@ export default function List(){
 
     return <div id='listDiv'>
         { englishBlocks }
-        <div id='listRemocon'>
+        <div id='listRemocon' style={ thema ? { backgroundColor : '#ffffff' } : { backgroundColor : '#202020' }}>
             <header id='listHeader'>
                 총단어 { words.length }
                 <input type="text" name='search' id='search' onChange={event => {
@@ -125,15 +136,18 @@ export default function List(){
                 }} />
             </header>
             <nav id='listNav'>
-                <Link to='/addPage' className='linkBtn' state = {{id : location.state.id}}>단어 <span>추가</span></Link>
+                <Link to='/addPage' className='linkBtn' state = {{id : location.state.id}} 
+                    style={ thema ? { color : '#202020' } : { color : '#ffffff' }}>단어 <span>추가</span></Link>
 
-                <Link to="/playSet" className='linkBtn' state={{id : location.state.id, leng : words.length}}>단어 <span>학습</span></Link>
+                <Link to="/playSet" className='linkBtn' state={{id : location.state.id, leng : words.length}}
+                    style={ thema ? { color : '#202020' } : { color : '#ffffff' }}>단어 <span>학습</span></Link>
                 
-                <Link to="/edit" className='linkBtn' state={{id : location.state.id}} >단어 <span>편집</span></Link>
+                <Link to="/edit" className='linkBtn' state={{id : location.state.id}}
+                    style={ thema ? { color : '#202020' } : { color : '#ffffff' }}>단어 <span>편집</span></Link>
                 
                 <label className='linkBtn'>불러오기<button type='file' onClick={ event => {
                     setModal(true);
-                }}/></label>
+                }} style={ thema ? { color : '#202020' } : { color : '#ffffff' }}/></label>
                 <br/>
                 <label id='speedLabel'><span>소리 속도</span><input id='speedBar' type='range' min='0' max='1' step='0.1' ref={ speedRef } /></label>
             </nav>
@@ -157,6 +171,21 @@ export default function List(){
                     setModal(false);
                 }}/>
             </div>
+        </div>
+        <div id='colorChange' style={thema ? {
+                backgroundColor : '#ffffff'
+            } : {
+                backgroundColor : '#272727'
+            }}>
+            <div id='colorIcon' style={thema ? {
+                    backgroundImage : `url(${Sun})`,
+                    marginLeft : '5px'
+                } : {
+                    backgroundImage : `url(${Moon})`,
+                    marginLeft : '75px'
+                }} onClick={(event) => {
+                    setThema(!thema);
+                }}></div>
         </div>
     </div>
 }

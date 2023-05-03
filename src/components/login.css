@@ -1,3 +1,7 @@
+*{
+    transition: all 0.3s;
+}
+
 #loginForm{
     width: 100%;
     min-width: 320px;
@@ -25,6 +29,7 @@
     min-height: 22px;
     font-size: 16px;
     transition: all 0.2s;
+    background-color: rgba(0,0,0,0.0);
 }
 
 #loginForm input[name=psw]{
@@ -36,6 +41,7 @@
     font-size: 16px;
     transition: all 0.2s;
     float: left;
+    background-color: rgba(0,0,0,0.0);
 }
 
 .pswLabel{
@@ -51,8 +57,8 @@
     width: 25px;
     height: 25px;
     border: none;
+    background-color: rgba(0,0,0,0.0);
     background-image: url('../imgs/eyeClose.png');
-    background-color: #ffffff;
     background-size: 25px;
     background-position: center;
     background-repeat: no-repeat;
@@ -73,11 +79,32 @@
     min-width: 125px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #FFFFFF;
     cursor: pointer;
     color: #000000;
     text-decoration: none;
+    background-color: rgba(0,0,0,0.0);
 }
 #loginBtn{
     margin-top: 90px;
+}
+
+#colorChange{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 10px 20px;
+    width: 120px;
+    height: 50px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+    border-radius: 10px;
+}
+
+#colorIcon{
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    background-size: 40px;
+    transition: all 0.3s;
+    cursor: pointer;
 }
