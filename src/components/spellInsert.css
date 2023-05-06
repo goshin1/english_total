@@ -23,7 +23,6 @@
     margin: 0px auto;
     width: 300px;
     height: 450px;
-    background-color: #ffffff;
 }
 
 .spellHint{
@@ -66,8 +65,10 @@
 }
 
 .insertMent{
+    border: none;
     border-bottom: 1px solid #1fab89;
     margin-bottom: 30px;
+    background-color: rgba(0,0,0,0);
 }
 
 .answerMent{

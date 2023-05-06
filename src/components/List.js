@@ -136,40 +136,76 @@ export default function List(){
                 }} />
             </header>
             <nav id='listNav'>
-                <Link to='/addPage' className='linkBtn' state = {{id : location.state.id}} 
-                    style={ thema ? { color : '#202020' } : { color : '#ffffff' }}>단어 <span>추가</span></Link>
+                <Link to='/addPage' className='linkBtn' state = {{id : location.state.id, thema : thema}} 
+                    style={ thema ? { backgroundColor : '#ffffff', color : '#202020' } : { backgroundColor : '#252525', color : '#ffffff' }}>단어 <span>추가</span></Link>
 
-                <Link to="/playSet" className='linkBtn' state={{id : location.state.id, leng : words.length}}
-                    style={ thema ? { color : '#202020' } : { color : '#ffffff' }}>단어 <span>학습</span></Link>
+                <Link to="/playSet" className='linkBtn' state={{id : location.state.id, leng : words.length, thema : thema}}
+                    style={ thema ? { backgroundColor : '#ffffff', color : '#202020' } : { backgroundColor : '#252525', color : '#ffffff' }}>단어 <span>학습</span></Link>
                 
-                <Link to="/edit" className='linkBtn' state={{id : location.state.id}}
-                    style={ thema ? { color : '#202020' } : { color : '#ffffff' }}>단어 <span>편집</span></Link>
+                <Link to="/edit" className='linkBtn' state={{id : location.state.id, thema : thema}}
+                    style={ thema ? { backgroundColor : '#ffffff', color : '#202020' } : { backgroundColor : '#252525', color : '#ffffff' }}>단어 <span>편집</span></Link>
                 
-                <label className='linkBtn'>불러오기<button type='file' onClick={ event => {
+                <label className='linkBtn' style={ thema ? { backgroundColor : '#ffffff', color : '#202020' } : { backgroundColor : '#252525', color : '#ffffff' }}>불러오기<button type='file' onClick={ event => {
                     setModal(true);
-                }} style={ thema ? { color : '#202020' } : { color : '#ffffff' }}/></label>
+                }}/></label>
                 <br/>
                 <label id='speedLabel'><span>소리 속도</span><input id='speedBar' type='range' min='0' max='1' step='0.1' ref={ speedRef } /></label>
             </nav>
         </div>
         <div id='orderRemocon' style={{display : modal ? 'block' : 'none' } }>
-            <div id='orderNav'>
+            <div id='orderNav' style={ thema ? { backgroundColor : '#ffffff', color : '#202020' } : { backgroundColor : '#252525', color : '#ffffff' }}>
                 <input type='button' value='추가 오름차순' onClick={()=>{
                     setOrder('select num, word, mean from wordlist where mid = $1 order by num asc');
                     setModal(false);
-                }}/>
+                }} style={ thema ? { color : '#202020' } : { color : '#ffffff' }}
+                    onMouseOver={(event)=>{
+                        event.currentTarget.style.backgroundColor = '#62d2a2';
+                        event.currentTarget.style.color = '#ffffff';
+                    }} onMouseLeave={(event) => {
+                        event.currentTarget.style.backgroundColor = '';
+                        if(thema){
+                            event.currentTarget.style.color = '';
+                        }
+                    }}/>
                 <input type='button' value='추가 내림차순' onClick={()=>{
                     setOrder('select num, word, mean from wordlist where mid = $1 order by num desc');
                     setModal(false);
-                }}/><br/>
+                }} style={ thema ? { color : '#202020' } : { color : '#ffffff' }}
+                    onMouseOver={(event)=>{
+                        event.currentTarget.style.backgroundColor = '#62d2a2';
+                        event.currentTarget.style.color = '#ffffff';
+                    }} onMouseLeave={(event) => {
+                        event.currentTarget.style.backgroundColor = '';
+                        if(thema){
+                            event.currentTarget.style.color = '';
+                        }
+                    }}/><br/>
                 <input type='button' value='단어 오름차순' onClick={()=>{
                     setOrder('select num, word, mean from wordlist where mid = $1 order by word asc');
                     setModal(false);
-                }}/>
+                }} style={ thema ? { color : '#202020' } : { color : '#ffffff' }}
+                    onMouseOver={(event)=>{
+                        event.currentTarget.style.backgroundColor = '#62d2a2';
+                        event.currentTarget.style.color = '#ffffff';
+                    }} onMouseLeave={(event) => {
+                        event.currentTarget.style.backgroundColor = '';
+                        if(thema){
+                            event.currentTarget.style.color = '';
+                        }
+                    }}/>
                 <input type='button' value='단어 내림차순' onClick={()=>{
                     setOrder('select num, word, mean from wordlist where mid = $1 order by word desc');
                     setModal(false);
-                }}/>
+                }} style={ thema ? { color : '#202020' } : { color : '#ffffff' }}
+                    onMouseOver={(event)=>{
+                        event.currentTarget.style.backgroundColor = '#62d2a2';
+                        event.currentTarget.style.color = '#ffffff';
+                    }} onMouseLeave={(event) => {
+                        event.currentTarget.style.backgroundColor = '';
+                        if(thema){
+                            event.currentTarget.style.color = '';
+                        }
+                    }}/>
             </div>
         </div>
         <div id='colorChange' style={thema ? {

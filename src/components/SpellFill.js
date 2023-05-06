@@ -15,6 +15,7 @@ export default function SpellFill(){
     const [wrong, setWrong] = useState([]);
     const [selWord, setSelWord] = useState(answers.length > 0 ? answers[0].word : '');
     const [typo, setTypo] = useState(0);
+    const thema = location.state.thema;
     /*
         answers
         - ans : 섞이게 된 스펠링
@@ -70,6 +71,13 @@ export default function SpellFill(){
         ];
     }
 
+    if(thema){
+        document.body.style.backgroundColor = '#ffffff';
+        document.body.style.color = '#202020';
+    } else {
+        document.body.style.backgroundColor = '#202020';
+        document.body.style.color = '#ffffff';
+    }
 
 
     const useInterval = (callback, delay) => {
@@ -108,7 +116,6 @@ export default function SpellFill(){
             setTime('끝났습니다.');
         }
     }
-
 
     if(words.length <= 0){
         let wrongBlock = [];

@@ -13,13 +13,18 @@
     text-align: center;
 }
 
-#addDiv input{
+#addDiv input[type=text]{
     margin: 15px 10px;
     width: 15%;
     min-width: 230px;
     height: 20px;
     border: none;
-    float: left;  
+    float: left; 
+    background-color: rgba(0,0,0,0);
+}
+
+#addDiv input[type=text]::placeholder{
+    color : #1FAB89;
 }
 
 #wSearch{

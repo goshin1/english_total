@@ -24,12 +24,13 @@
     margin: 25px auto;
 }
 
-#playDiv input[type=number]{
+#quizNumber{
     border: none;
     float: right;
     height: 20px;
     margin: 5px;
     text-align: right;
+    background-color: rgba(0,0,0,0);
 }
 
 #playDiv label span{
@@ -55,7 +56,6 @@
 }
 
 .radioLabel input[type=radio]:checked{
-    border: 0.2em solid #ffffff;
     background-color: #1fab89;
 }
 

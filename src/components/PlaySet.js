@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { setWords } from '../noteSlice';
 import axios from "axios";
+import Moon from '../imgs/Moon.png';
+import Sun from '../imgs/Sun.png'
 
 export default function PlaySet(){
     const location = useLocation();
@@ -11,8 +13,9 @@ export default function PlaySet(){
     const navigate = useNavigate();
     const wordRef = useRef();
     const [limit, setLimit] = useState(3);
+    const [thema, setThema] = useState(location.state.thema);
     const words = useSelector(state => {return state.note.words});
-    
+
     if(words.length === 0){
         axios.post(`${process.env.REACT_APP_ROUTER_HOST}load`, {
             data : {
@@ -89,7 +92,8 @@ export default function PlaySet(){
                 count : wordRef.current.value,
                 limit : limit,
                 quiz : res, 
-                answers : answers
+                answers : answers,
+                thema : thema
             }
         })
     };
@@ -111,7 +115,8 @@ export default function PlaySet(){
                 count : wordRef.current.value,
                 limit : limit,
                 quiz : res, 
-                answers : answers
+                answers : answers,
+                thema : thema
             }
         })
     };
@@ -134,7 +139,8 @@ export default function PlaySet(){
                 count : wordRef.current.value,
                 limit : limit,
                 quiz : res,
-                answers : answers
+                answers : answers,
+                thema : thema
             }
         })
     };
@@ -152,12 +158,19 @@ export default function PlaySet(){
                 id : location.state.id,
                 count : wordRef.current.value,
                 limit : limit,
-                quiz : res
+                quiz : res,
+                thema : thema
             }
         })
     };
 
-    // 오답화면 제작
+    if(thema){
+        document.body.style.backgroundColor = '#ffffff';
+        document.body.style.color = '#202020';
+    } else {
+        document.body.style.backgroundColor = '#202020';
+        document.body.style.color = '#ffffff';
+    }
     
     return <div id='playDiv'>
         <header id='setHeader'>
@@ -165,14 +178,19 @@ export default function PlaySet(){
         </header>
         <label id='quizCount'>
             <span>문제 개수</span>
-            <input type='number' ref={wordRef} defaultValue='1' onChange={(event) => {
+            <input id='quizNumber' type='text' ref={wordRef} defaultValue='1' onChange={(event) => {
+                if(isNaN(event.currentTarget.value)){
+                    alert('숫자를 입력해주세요.')
+                    event.currentTarget.value = 1;
+                }
+
                 if(event.currentTarget.value > location.state.leng){
                     event.currentTarget.value = location.state.leng;
                 }
                 if(event.currentTarget.value < 1){
                     event.currentTarget.value = 1;
                 }
-            }} />
+            }} style={thema ? { color : '#202020' } : { color : '#ffffff' }}/>
         </label>
         <label id='quizLimit'>
             <span>제한 시간</span>
@@ -186,6 +204,21 @@ export default function PlaySet(){
             <div className='playSite' onClick={()=>{quizSet('/spell')}}>단어 맞추기</div>
             <div className='playSite' onClick={()=>{quizMeanSet('/mean')}}>영어단어 맞추기</div>
             <div className='playSite' onClick={()=>{quizMeanSet('/spellInsert')}}>영어 맞추기</div>
+        </div>
+        <div id='colorChange' style={thema ? {
+                backgroundColor : '#ffffff'
+            } : {
+                backgroundColor : '#272727'
+            }}>
+            <div id='colorIcon' style={thema ? {
+                    backgroundImage : `url(${Sun})`,
+                    marginLeft : '5px'
+                } : {
+                    backgroundImage : `url(${Moon})`,
+                    marginLeft : '75px'
+                }} onClick={(event) => {
+                    setThema(!thema);
+                }}></div>
         </div>
     </div>
 }

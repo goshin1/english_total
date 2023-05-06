@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setWords, deleteWord, deleteWordCancel,  updateWord, updateModifyWord } from "../noteSlice";
 import check from '../imgs/checkIcon.png';
 import checkOn from '../imgs/checkIconOn.png';
+import Moon from '../imgs/Moon.png';
+import Sun from '../imgs/Sun.png'
 import axios from "axios";
 import './edit.css';
 import './list.css';
@@ -28,7 +30,7 @@ export default function Edit(){
     const [remocon, setRemocon] = useState(false);
     const [all, setAll] = useState(true);
     const [update, setUpdate] = useState([]);
-    
+    const [thema, setThema] = useState(location.state.thema);
 
     const dispatch = useDispatch();
     const englishBlocks = [];
@@ -47,7 +49,7 @@ export default function Edit(){
                         
                     </div>
                     <span className='english'>
-                        <input type="text" defaultValue={ words[i].word }
+                        <input type="text" style={ thema ? { color : '#202020' } : { color : '#ffffff' }} defaultValue={ words[i].word }
                             onChange={(event) => {
                                 let num = '' + words[i].num;
                                 let temp = Object.assign({}, words[i]);
@@ -79,7 +81,7 @@ export default function Edit(){
                         });
                     }}></button>
                     <span className='hangul'>
-                        <input type="text" defaultValue={ words[i].mean } 
+                        <input type="text" style={ thema ? { color : '#202020' } : { color : '#ffffff' }} defaultValue={ words[i].mean } 
                             onChange={(event) => {
                                 let num = '' + words[i].num;
                                 let temp = Object.assign({}, words[i]);
@@ -98,6 +100,14 @@ export default function Edit(){
                 </div>
             );
         }
+    }
+
+    if(thema){
+        document.body.style.backgroundColor = '#ffffff';
+        document.body.style.color = '#202020';
+    } else {
+        document.body.style.backgroundColor = '#202020';
+        document.body.style.color = '#ffffff';
     }
 
     return <div>
@@ -185,6 +195,20 @@ export default function Edit(){
         </header>
         
         {englishBlocks}
-        
+        <div id='colorChange' style={thema ? {
+                backgroundColor : '#ffffff'
+            } : {
+                backgroundColor : '#272727'
+            }}>
+            <div id='colorIcon' style={thema ? {
+                    backgroundImage : `url(${Sun})`,
+                    marginLeft : '5px'
+                } : {
+                    backgroundImage : `url(${Moon})`,
+                    marginLeft : '75px'
+                }} onClick={(event) => {
+                    setThema(!thema);
+                }}></div>
+        </div>
     </div>
 }

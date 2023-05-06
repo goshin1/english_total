@@ -236,7 +236,3 @@
     transition: all 0.2s;
 }
 
-#orderNav input[type=button]:hover{
-    background-color: #62d2a2;
-    color: #ffffff;
-}

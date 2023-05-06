@@ -11,8 +11,8 @@ export default function Spell(){
     const [wrong, setWrong] = useState([]);
     const over = location.state.count;
     const locationLimit = Number(location.state.limit);
-    const answers = location.state.answers;
-
+    const [answers, setAnswers] = useState(location.state.answers);
+    console.log(answers);
     let blocks = [];
     if(words.length > 0){
         blocks = [
@@ -28,6 +28,8 @@ export default function Spell(){
                             }
                             setTime(0);
                             setWords(words.filter(word => word.num !== words[0].num));
+                            answers.shift();
+                            setAnswers(answers);
                         }}/>
                         <input type="button" value={answers[0][1]} className="answerBtn" onClick={(event)=>{
                             if(words[0].mean === answers[0][1]){
@@ -38,6 +40,8 @@ export default function Spell(){
                             }
                             setTime(0);
                             setWords(words.filter(word => word.num !== words[0].num));
+                            answers.shift();
+                            setAnswers(answers);
                         }}/><br/>
                         <input type="button" value={answers[0][2]} className="answerBtn" onClick={(event)=>{
                             if(words[0].mean === answers[0][2]){
@@ -48,6 +52,8 @@ export default function Spell(){
                             }
                             setTime(0);
                             setWords(words.filter(word => word.num !== words[0].num));
+                            answers.shift();
+                            setAnswers(answers);
                         }}/>
                         <input type="button" value={answers[0][3]} className="answerBtn" onClick={(event)=>{
                             if(words[0].mean === answers[0][3]){
@@ -58,6 +64,8 @@ export default function Spell(){
                             }
                             setTime(0);
                             setWords(words.filter(word => word.num !== words[0].num));
+                            answers.shift();
+                            setAnswers(answers);
                         }}/>
                     </div>
                 </div>
@@ -92,6 +100,8 @@ export default function Spell(){
     if(time === location.state.limit + 1){
         if(words.length >= 0){
             setWords(words.filter(word => word.num !== words[0].num));
+            answers.shift();
+                            setAnswers(answers);
             setTime(0);
             setFail(fail + 1);
             setCount(count + 1);
