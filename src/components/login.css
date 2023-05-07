@@ -18,7 +18,7 @@
 
 #loginForm input[name=id]{
     margin: 30px auto;
-    width: 15%;
+    width: 275px;
     min-width: 230px;
     border: none;
     height: 5%;
