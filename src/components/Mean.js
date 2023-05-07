@@ -12,7 +12,6 @@ export default function Spell(){
     const over = location.state.count;
     const locationLimit = Number(location.state.limit);
     const [answers, setAnswers] = useState(location.state.answers);
-    
     let blocks = [];
     if(words.length > 0){
         blocks = [
@@ -20,7 +19,7 @@ export default function Spell(){
                     <div className="word">{words[0].mean}</div>
                     <div className="answers">
                         <input type="button" value={answers[0][0]} className="answerBtn" onClick={(event)=>{
-                            if(words[0].mean === answers[0][0]){
+                            if(words[0].word === answers[0][0]){
                                 setSucess(sucess + 1);
                             }else{
                                 setFail(fail+ 1);
@@ -32,7 +31,7 @@ export default function Spell(){
                             setAnswers(answers);
                         }}/>
                         <input type="button" value={answers[0][1]} className="answerBtn" onClick={(event)=>{
-                            if(words[0].mean === answers[0][1]){
+                            if(words[0].word === answers[0][1]){
                                 setSucess(sucess + 1);
                             }else{
                                 setFail(fail+ 1);
@@ -44,7 +43,7 @@ export default function Spell(){
                             setAnswers(answers);
                         }}/><br/>
                         <input type="button" value={answers[0][2]} className="answerBtn" onClick={(event)=>{
-                            if(words[0].mean === answers[0][2]){
+                            if(words[0].word === answers[0][2]){
                                 setSucess(sucess + 1);
                             }else{
                                 setFail(fail+ 1);
@@ -56,7 +55,7 @@ export default function Spell(){
                             setAnswers(answers);
                         }}/>
                         <input type="button" value={answers[0][3]} className="answerBtn" onClick={(event)=>{
-                            if(words[0].mean === answers[0][3]){
+                            if(words[0].word === answers[0][3]){
                                 setSucess(sucess + 1);
                             }else{
                                 setFail(fail+ 1);
@@ -72,7 +71,6 @@ export default function Spell(){
         ];
     }
     
-    console.log(answers);
 
     //https://mingule.tistory.com/65
     const useInterval = (callback, delay) => {
