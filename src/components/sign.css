@@ -57,7 +57,7 @@
 
 .pswLabel{
     margin: 30px auto;
-    width: 15%;
+    width: 280px;
     min-width: 230px;
     height: 40px;
     display: block;
@@ -68,7 +68,7 @@
 }
 
 #signForm input[name=psw], #signForm input[name=pswCh]{
-    width: 15%;
+    width: 200px;
     min-width: 200px;
     border: none;
     height: 5%;
