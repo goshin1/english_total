@@ -1,9 +1,11 @@
 import './sign.css';
 import logoExtend from '../imgs/englishnoteLogoExtend.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import eye from '../imgs/eye.png'
+import Moon from '../imgs/Moon.png';
+import Sun from '../imgs/Sun.png'
 import eyeClose from '../imgs/eyeClose.png'
 
 export default function Sign(){
@@ -11,15 +13,24 @@ export default function Sign(){
     const pwdRef = useRef();
     const pwdCheckRef = useRef();
     const emailRef = useRef();
+    const location = useLocation();
     const navigate = useNavigate();
     const [dup, setDup] = useState('null');
     const [pwd, setPwd] = useState(true);
     const [pwdCh, setPwdCh] = useState(true);
+    const [thema, setThema] = useState(location.state.thema);
+
+    if(thema){
+        document.body.style.backgroundColor = '#ffffff';
+    } else {
+        document.body.style.backgroundColor = '#202020';
+    }
 
     return <form id="signForm">
         <img id='logo' src={logoExtend}  alt='logo'/>
         <label id='idLabel'>
-            <input type="text" name="id" placeholder='Id' ref={idRef} style={ dup === 'sucess' || dup === 'null' ? {color : '#000000'} : {color : '#ff0000'}  } />
+            <input type="text" name="id" placeholder='Id' ref={idRef} 
+                style={ dup === 'sucess' || dup === 'null' ? { color : thema ? '#202020' : '#ffffff'} : {color : '#ff0000'}  } />
             <input type='button' name='duplic' value='' onClick={() => {
                 axios.post(`${process.env.REACT_APP_ROUTER_HOST}duplic`, {
                     data : {
@@ -32,9 +43,11 @@ export default function Sign(){
             }}/>
         </label>
         
-        <input type="text" name='email' placeholder='E-mail' ref={emailRef}/>
+        <input type="text" name='email' placeholder='E-mail' ref={emailRef}
+            style={ thema ? {color : '#202020'} : {color : '#ffffff'}}/>
         <label className='pswLabel'>
-            <input type="password" id="psw" name="psw" placeholder='Password' ref={ pwdRef } autoComplete="off"/>
+            <input type="password" id="psw" name="psw" placeholder='Password' ref={ pwdRef } autoComplete="off"
+                style={ thema ? {color : '#202020'} : {color : '#ffffff'}}/>
             <input type='button' className='typeBtn' onClick={(event)=>{
                 if(pwdCh){
                     document.getElementById('psw').type = "text";
@@ -48,7 +61,8 @@ export default function Sign(){
         </label>
         
         <label className='pswLabel' id='pswChLabel'>
-            <input type="password" id="pswCh" name="pswCh" placeholder='Password Check' ref={ pwdCheckRef } autoComplete="off"/>
+            <input type="password" id="pswCh" name="pswCh" placeholder='Password Check' ref={ pwdCheckRef } autoComplete="off"
+                style={ thema ? {color : '#202020'} : {color : '#ffffff'}}/>
             <input type='button' className='typeBtn' onClick={(event)=>{
                 if(pwd){
                     document.getElementById('pswCh').type = "text";
@@ -95,8 +109,23 @@ export default function Sign(){
                 }
             }).then((res) => {
                 console.log(res);
-                navigate('/');
+                navigate('/', {thema : thema});
             })
-        }}>회원가입</button>
+        }} style={ thema ? {color : '#202020'} : {color : '#ffffff'}}>회원가입</button>
+        <div id='colorChange' style={thema ? {
+                backgroundColor : '#ffffff'
+            } : {
+                backgroundColor : '#272727'
+            }}>
+            <div id='colorIcon' style={thema ? {
+                    backgroundImage : `url(${Sun})`,
+                    marginLeft : '5px'
+                } : {
+                    backgroundImage : `url(${Moon})`,
+                    marginLeft : '75px'
+                }} onClick={(event) => {
+                    setThema(!thema);
+                }}></div>
+        </div>
     </form>
 }

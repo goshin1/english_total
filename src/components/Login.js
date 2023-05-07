@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import logoExtend from '../imgs/englishnoteLogoExtend.png';
 import Moon from '../imgs/Moon.png';
@@ -9,11 +9,13 @@ import eye from '../imgs/eye.png';
 import eyeClose from '../imgs/eyeClose.png'
 
 export default function Login(){
+    const location = useLocation();
     const navigate = useNavigate();
     const idRef = useRef();
     const pwdRef = useRef();
     const [pwd, setPwd] = useState(true);
-    const [thema, setThema] = useState(true);
+    console.log(location.state)
+    const [thema, setThema] = useState(location.state === null ? true : location.state.thema);
 
     const login = async (event) => {
         if(idRef.current.value === '' || pwdRef.current.value === ''){
@@ -70,7 +72,8 @@ export default function Login(){
         <Link id='loginBtn' to='/' onClick={ event => {
             login(event);  
         }} style={ thema ? { color : '#202020' } : { color : '#ffffff' }}>로그인</Link>
-        <Link to="/sign" id='signBtn' style={ thema ? { color : '#202020' } : { color : '#ffffff' }}>회원가입</Link>
+        <Link to="/sign" id='signBtn' style={ thema ? { color : '#202020' } : { color : '#ffffff' }}
+            state={{ thema : thema }}>회원가입</Link>
 
         <div id='colorChange' style={thema ? {
                 backgroundColor : '#ffffff'
