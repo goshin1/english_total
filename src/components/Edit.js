@@ -115,7 +115,9 @@ export default function Edit(){
             총단어 { words.length }
             <input type="text" name='search' id='search' onChange={event => {
                 setSearch(event.target.value);
-            }} />
+            }} onClick={(event) => {
+                console.log(event.currentTarget.style.width)
+            }}/>
             <div id="editRemocon" onClick={event => {
                 if(!remocon){
                     event.currentTarget.style.width = '300px';

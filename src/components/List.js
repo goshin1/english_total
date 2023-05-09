@@ -133,7 +133,14 @@ export default function List(){
                 총단어 { words.length }
                 <input type="text" name='search' id='search' onChange={event => {
                     setSearch(event.target.value);
-                }} />
+                }}  onClick={(event) => {
+                    if(event.currentTarget.style.width === '' || event.currentTarget.style.width === '18px'){
+                        event.currentTarget.style.width = '80px';
+                    } else {
+                        event.currentTarget.style.width = '18px';
+                    }
+                }}/>
+                <Link id='profileLink' to='/profile' state={{id : location.state.id, thema : thema}}>프로필 수정</Link>
             </header>
             <nav id='listNav'>
                 <Link to='/addPage' className='linkBtn' state = {{id : location.state.id, thema : thema}} 

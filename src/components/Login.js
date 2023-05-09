@@ -14,7 +14,6 @@ export default function Login(){
     const idRef = useRef();
     const pwdRef = useRef();
     const [pwd, setPwd] = useState(true);
-    console.log(location.state)
     const [thema, setThema] = useState(location.state === null ? true : location.state.thema);
 
     const login = async (event) => {
@@ -41,8 +40,6 @@ export default function Login(){
             alert('아이디, 비밀번호가 틀렸습니다.\n다시 입력해주세요.');
             return;
         });
-
-        //navigate('/list');
     }
 
     if(thema){
