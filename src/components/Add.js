@@ -14,6 +14,7 @@ export default function Add(){
     const [saveText, setSaveText] = useState("");
     const location = useLocation();
     const [thema, setThema] = useState(location.state.thema);
+    const [popup, setPopup] = useState(null);
     let temp = [];
     for(let i = 0; i < saveWords.length; i++){
         temp.push(
@@ -31,8 +32,8 @@ export default function Add(){
         document.body.style.backgroundColor = '#202020';
         document.body.style.color = '#ffffff';
     }
+
     return <div id='addDiv'>
-        
         <p>
             <input type='text' name='searchWord' placeholder='word' ref={ wordRef } style={ thema ? { color : '#202020' } : { color : '#ffffff' }} />
             <button id='wSearch' onClick={() => {
@@ -48,7 +49,7 @@ export default function Add(){
                         word : wordRef.current.value
                     }
                 }).then(res => {
-                    if(res.data !== 'fail'){
+                    if(res.data === 'sucess'){
                         setSaveWords([...saveWords, [wordRef.current.value, meanRef.current.value]]);
                         setSaveText(saveText+("" + wordRef.current.value + "|" + meanRef.current.value + "\n"));
                         axios.post(`${process.env.REACT_APP_ROUTER_HOST}addWord`, {
@@ -63,7 +64,7 @@ export default function Add(){
                         wordRef.current.value = '';
                         meanRef.current.value = '';
                     } else {
-                        alert('이미 추가한 단어입니다. 확인해주세요');
+                        setPopup(res.data)
                     }
                 })
             } }>추가</button>    
@@ -90,5 +91,33 @@ export default function Add(){
                     setThema(!thema);
                 }}></div>
         </div>
+        <div id='addRemocon' style={popup === null ?  {display : 'none'} : {display : 'block'}}>
+            <div id='addNav' style={thema ? {backgroundColor : '#ffffff'} : {backgroundColor : '#252525'}}>
+                <div className='addNavBlock'>{popup === null ? '' : popup.word}</div>
+                <div className='addNavBlock'>{popup === null ? '' : popup.mean}</div>
+                <div className='addNavBlock'>이미 추가된 단어입니다.<br/> 변경하시겠습니까?</div>
+                <div className='addNavBlock'>
+                    <button style={thema ? {backgroundColor : '#ffffff', color : '#202020'} : {backgroundColor : '#252525', color : '#ffffff'}} 
+                        onClick={()=>{
+                            axios.post(`${process.env.REACT_APP_ROUTER_HOST}updateWord`, {
+                                data : {
+                                    mid : popup.mid,
+                                    num : popup.num,
+                                    word : wordRef.current.value,
+                                    mean : meanRef.current.value
+                                }
+                            }).then(res => {
+    
+                            });
+                            wordRef.current.value = '';
+                            meanRef.current.value = '';
+                            setPopup(null);
+                        }} >변경</button>
+                    <button style={thema ? {backgroundColor : '#ffffff', color : '#202020'} : {backgroundColor : '#252525', color : '#ffffff'}} 
+                        onClick={()=>{setPopup(null)}} >취소</button>
+                </div>
+            </div>
+        </div>
     </div>
+    
 }

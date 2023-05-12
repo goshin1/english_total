@@ -49,6 +49,7 @@ export default function Login(){
     }
 
     return <form id='loginForm'>
+        
         <img id='logo' src={logoExtend} alt='logo'/>
         <input type="text" name="id" placeholder='Id' ref={ idRef }
             style={ thema ? { color : '#202020' } : { color : '#ffffff' }}/>
@@ -71,6 +72,7 @@ export default function Login(){
         }} style={ thema ? { color : '#202020' } : { color : '#ffffff' }}>로그인</Link>
         <Link to="/sign" id='signBtn' style={ thema ? { color : '#202020' } : { color : '#ffffff' }}
             state={{ thema : thema }}>회원가입</Link>
+
 
         <div id='colorChange' style={thema ? {
                 backgroundColor : '#ffffff'

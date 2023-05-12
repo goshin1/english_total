@@ -10,8 +10,8 @@ import eyeClose from '../imgs/eyeClose.png'
 
 export default function Sign(){
     const idRef = useRef();
-    const pwdRef = useRef();
-    const pwdCheckRef = useRef();
+    const [psw, setPsw] = useState('');
+    const [pswCh, setPswCh] = useState('');
     const emailRef = useRef();
     const location = useLocation();
     const navigate = useNavigate();
@@ -46,8 +46,9 @@ export default function Sign(){
         <input type="text" name='email' placeholder='E-mail' ref={emailRef}
             style={ thema ? {color : '#202020'} : {color : '#ffffff'}}/>
         <label className='pswLabel'>
-            <input type="password" id="psw" name="psw" placeholder='Password' ref={ pwdRef } autoComplete="off"
-                style={ thema ? {color : '#202020'} : {color : '#ffffff'}}/>
+            <input type="password" id="psw" name="psw" placeholder='Password' autoComplete="off"
+                style={ thema ? {color : '#202020'} : {color : '#ffffff'}}
+                onChange={event => {setPsw(event.currentTarget.value)}}/>
             <input type='button' className='typeBtn' onClick={(event)=>{
                 if(pwdCh){
                     document.getElementById('psw').type = "text";
@@ -61,8 +62,9 @@ export default function Sign(){
         </label>
         
         <label className='pswLabel' id='pswChLabel'>
-            <input type="password" id="pswCh" name="pswCh" placeholder='Password Check' ref={ pwdCheckRef } autoComplete="off"
-                style={ thema ? {color : '#202020'} : {color : '#ffffff'}}/>
+            <input type="password" id="pswCh" name="pswCh" placeholder='Password Check' autoComplete="off"
+                style={psw !== pswCh ? {color : '#ff0000'} : {color : thema ? '#202020' : '#ffffff'}}
+                onChange={event => {setPswCh(event.currentTarget.value)}}/>
             <input type='button' className='typeBtn' onClick={(event)=>{
                 if(pwd){
                     document.getElementById('pswCh').type = "text";
@@ -81,9 +83,8 @@ export default function Sign(){
                 idRef.current.focus();
                 return;
             }
-            if(pwdRef.current.value === ''){
+            if(psw === ''){
                 alert('비밀번호를 입력해주세요.');
-                pwdRef.current.focus();
                 return;
             }
             if(emailRef.current.value === ''){
@@ -91,9 +92,8 @@ export default function Sign(){
                 emailRef.current.focus();
                 return;
             }
-            if(pwdCheckRef.current.value !== pwdRef.current.value){
+            if(pswCh !== psw){
                 alert('비밀번호가 일치하지 않습니다.\n다시 입력해주세요.');
-                pwdCheckRef.current.focus();
                 return;
             }
             if(dup === 'duplic' || dup === 'null'){
@@ -101,14 +101,19 @@ export default function Sign(){
                 return;
             }
 
+            if(emailRef.current.value.indexOf('@') === -1 ||
+                emailRef.current.value.indexOf('@') >= emailRef.current.value.indexOf('.')){
+                    alert('이메일 양식이 틀립니다.')
+                    return;
+            }
+
             axios.post(`${process.env.REACT_APP_ROUTER_HOST}sign`, {
                 data : {
                     id : idRef.current.value,
-                    pwd : pwdRef.current.value,
+                    pwd : psw,
                     email : emailRef.current.value
                 }
             }).then((res) => {
-                console.log(res);
                 navigate('/', {thema : thema});
             })
         }} style={ thema ? {color : '#202020'} : {color : '#ffffff'}}>회원가입</button>

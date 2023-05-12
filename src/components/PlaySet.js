@@ -65,7 +65,7 @@ export default function PlaySet(){
         let cnt = word.length < 5 ? word.length : 5;
         let ans = [];
         while(ans.length < cnt){
-            let random = Math.floor(Math.random() * cnt);
+            let random = Math.floor(Math.random() * word.length);
             if(word[random] !== '_'){
                 ans.push(word[random]);
                 word = word.replace(word[random], '_');

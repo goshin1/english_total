@@ -1,7 +1,6 @@
 import './spellInsert.css'
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import uuid from 'react-uuid';
 //<p className='ment'>정답 { over - fail } 오답 { fail }</p>
 export default function SpellInsert(){
     const location = useLocation();
@@ -56,7 +55,7 @@ export default function SpellInsert(){
     let blocks = [];
     if(words.length > 0){
         blocks = [
-            <div className="card" key={uuid()}>
+            <div className="card" key={'card'}>
                 <div className="spellHint">
                     <button className='speakerHint' onClick={() => {
                             speech(words[0].word);
@@ -64,7 +63,10 @@ export default function SpellInsert(){
                     <p className='insertHint'>{ words[0].mean }</p>
                 </div>
                 <div className="answersInsert">
-                    <p className='insertMent'>{ment}</p>
+                    <input type='text' className='insertMent' value={ment} onChange={(event) => {
+                        setMent(event.target.value);
+                        event.target.value = '';
+                    }}/>
                     <p className='inserts'>
                         <input type='button' className='insertBtn' value='a' onClick={(event)=>{
                             setMent(ment + event.currentTarget.value);
@@ -191,13 +193,12 @@ export default function SpellInsert(){
     }
 
     const [time, setTime] = useState(0);
-    const [count, setCount] = useState(0);
     useInterval(()=>{
         setTime(time + 1);
     }, words.length > 0 ? 1000 : null);
 
     if(time >= locationLimit + 1){
-
+        setMent('')
         setTime(0);
         setWrong([...wrong, words[0]]);
         setWords(words.filter(word=>word.num !== words[0].num));
@@ -209,7 +210,7 @@ export default function SpellInsert(){
         let wrongLeng = wrong.length;
         for(let i = 0; i < wrongLeng; i++){
             wrongBlock.push(
-                <div className='wrong' key={uuid()}>
+                <div className='wrong' key={'wrong'}>
                     <span> { wrong[i].word } </span>
                     <span> { wrong[i].mean } </span>
                 </div>

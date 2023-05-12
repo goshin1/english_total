@@ -114,10 +114,14 @@ export default function Edit(){
         <header id='listHeader'>
             총단어 { words.length }
             <input type="text" name='search' id='search' onChange={event => {
-                setSearch(event.target.value);
-            }} onClick={(event) => {
-                console.log(event.currentTarget.style.width)
-            }}/>
+                    setSearch(event.target.value);
+                }}  onClick={(event) => {
+                    if(event.currentTarget.style.width === '' || event.currentTarget.style.width === '18px'){
+                        event.currentTarget.style.width = '80px';
+                    } else {
+                        event.currentTarget.style.width = '18px';
+                    }
+                }}/>
             <div id="editRemocon" onClick={event => {
                 if(!remocon){
                     event.currentTarget.style.width = '300px';

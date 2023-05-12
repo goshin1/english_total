@@ -91,3 +91,40 @@
     display: block;
     
 }
+
+#addRemocon{
+    top: 0;
+    margin-top: 80px;
+    width: 100%;
+    position : fixed;
+}
+
+#addNav{
+    margin: 0 auto;
+    padding: 1%;
+    width: 280px;
+    height: 100%;
+    min-height: 120px;
+    background-color: #62d2a2;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.15);
+}
+
+.addNavBlock{
+    margin: 10px auto;
+    width: 90%;
+    line-height: 30px;
+    word-wrap:break-word;
+    transition: all 0.3s;
+}
+
+.addNavBlock:last-child{
+    margin-top: 30px;
+}
+
+.addNavBlock button{
+    margin: 0 10px;
+    width: 100px;
+    height: 25px;
+    border: none;
+    cursor: pointer;
+}
