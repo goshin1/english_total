@@ -64,15 +64,16 @@ export default function PlaySet(){
     const randomChar = (word, num) => {
         let cnt = word.length < 5 ? word.length : 5;
         let ans = [];
+        let ansP = [];
         while(ans.length < cnt){
             let random = Math.floor(Math.random() * word.length);
             if(word[random] !== '_'){
                 ans.push(word[random]);
+                ansP.push(random)
                 word = word.replace(word[random], '_');
             }
         }
-        ans.sort(()=>Math.random() - 0.5)
-        return { num : num, word : word, ans : ans};
+        return { num : num, word : word, ans : ans, ansP : ansP};
     }
 
     // 단어를 보고 뜻을 맞추기
@@ -132,7 +133,8 @@ export default function PlaySet(){
             answers.push(randomChar(word.word, word.num));
             res.push(word);
         }
-
+        
+        console.log(answers)
         navigate(target, {
             state : {
                 id : location.state.id,

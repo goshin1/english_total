@@ -27,10 +27,12 @@ export default function SpellFill(){
     let blocks = [];
     if(answers.length > 0 && words.length > 0){
         let ansBlocks = [];
+        let answerPosition = answers[0].ansP;
+        
         for(let i = 0; i < answers[0].ans.length; i++){
             ansBlocks.push(
                 <input type='button' key={uuid()} value={answers[0].ans[i]} className='spellBtn' onClick={(event) => {
-                    if(event.currentTarget.value === words[0].word[select]){
+                    if(event.currentTarget.value === words[0].word[answerPosition[select]]){
                         setSelect(select + 1);
                         answers[0].word = answers[0].word.replace('_', event.currentTarget.value);
                         setAnswers(answers);
