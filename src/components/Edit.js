@@ -120,6 +120,8 @@ export default function Edit(){
                         event.currentTarget.style.width = '80px';
                     } else {
                         event.currentTarget.style.width = '18px';
+                        event.currentTarget.value = '';
+                        setSearch('');
                     }
                 }}/>
             <div id="editRemocon" onClick={event => {

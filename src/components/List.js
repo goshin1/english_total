@@ -138,9 +138,11 @@ export default function List(){
                         event.currentTarget.style.width = '80px';
                     } else {
                         event.currentTarget.style.width = '18px';
+                        event.currentTarget.value = '';
+                        setSearch('');
                     }
                 }}/>
-                <Link id='profileLink' to='/profile' state={{id : location.state.id, thema : thema}}>프로필 수정</Link>
+                <Link id='profileLink' to='/profileCheck' state={{id : location.state.id, thema : thema}}>프로필 수정</Link>
             </header>
             <nav id='listNav'>
                 <Link to='/addPage' className='linkBtn' state = {{id : location.state.id, thema : thema}} 

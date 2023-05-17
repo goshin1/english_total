@@ -8,12 +8,10 @@ export default function SpellFill(){
     const [words, setWords] = useState(location.state.quiz);
     const [fail, setFail] = useState(0);
     const over = location.state.count;
-    const [answerNum, setAnswerNum] = useState(0);
     const locationLimit = Number(location.state.limit);
     const [answers, setAnswers] = useState(location.state.answers);
     const [select, setSelect] = useState(0);
     const [wrong, setWrong] = useState([]);
-    const [selWord, setSelWord] = useState(answers.length > 0 ? answers[0].word : '');
     const [typo, setTypo] = useState(0);
     const thema = location.state.thema;
     /*
@@ -28,7 +26,6 @@ export default function SpellFill(){
     if(answers.length > 0 && words.length > 0){
         let ansBlocks = [];
         let answerPosition = answers[0].ansP;
-        
         for(let i = 0; i < answers[0].ans.length; i++){
             ansBlocks.push(
                 <input type='button' key={uuid()} value={answers[0].ans[i]} className='spellBtn' onClick={(event) => {

@@ -11,6 +11,7 @@ import Spell from './components/Spell';
 import Mean from './components/Mean';
 import SpellInsert from './components/SpellInsert';
 import Profile from './components/Profile';
+import ProfileCheck from './components/ProfileCheck';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route exact path='/mean' element={<Mean></Mean>}></Route>
           <Route exact path='/spellInsert' element={<SpellInsert></SpellInsert>}></Route>
           <Route exact path='/profile' element={<Profile></Profile>}></Route>
+          <Route exact path='/profileCheck' element={<ProfileCheck></ProfileCheck>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

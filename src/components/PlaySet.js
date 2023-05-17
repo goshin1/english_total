@@ -73,6 +73,7 @@ export default function PlaySet(){
                 word = word.replace(word[random], '_');
             }
         }
+        ansP.sort()
         return { num : num, word : word, ans : ans, ansP : ansP};
     }
 
@@ -134,7 +135,6 @@ export default function PlaySet(){
             res.push(word);
         }
         
-        console.log(answers)
         navigate(target, {
             state : {
                 id : location.state.id,
@@ -147,24 +147,24 @@ export default function PlaySet(){
         })
     };
 
-    const quizWordSet = (target) => {
-        let temp = [ ...words ];
-        let res = [];
-        let leng = Number(wordRef.current.value);
-        for(let i = 0; i < leng; i++){
-            let num = Math.floor(Math.random() * temp.length);
-            res.push(temp.splice(num, 1)[0]);
-        }
-        navigate(target, {
-            state : {
-                id : location.state.id,
-                count : wordRef.current.value,
-                limit : limit,
-                quiz : res,
-                thema : thema
-            }
-        })
-    };
+    // const quizWordSet = (target) => {
+    //     let temp = [ ...words ];
+    //     let res = [];
+    //     let leng = Number(wordRef.current.value);
+    //     for(let i = 0; i < leng; i++){
+    //         let num = Math.floor(Math.random() * temp.length);
+    //         res.push(temp.splice(num, 1)[0]);
+    //     }
+    //     navigate(target, {
+    //         state : {
+    //             id : location.state.id,
+    //             count : wordRef.current.value,
+    //             limit : limit,
+    //             quiz : res,
+    //             thema : thema
+    //         }
+    //     })
+    // };
 
     if(thema){
         document.body.style.backgroundColor = '#ffffff';
