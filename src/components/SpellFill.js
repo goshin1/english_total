@@ -23,9 +23,11 @@ export default function SpellFill(){
         - word : 정답
     */
     let blocks = [];
+    
     if(answers.length > 0 && words.length > 0){
         let ansBlocks = [];
         let answerPosition = answers[0].ansP;
+        answerPosition.sort()
         for(let i = 0; i < answers[0].ans.length; i++){
             ansBlocks.push(
                 <input type='button' key={uuid()} value={answers[0].ans[i]} className='spellBtn' onClick={(event) => {

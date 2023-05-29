@@ -1,4 +1,16 @@
+#profileCheckDiv{
+    margin-top: 50px;
+}
+
+#profileCheckDiv p{
+    margin: 30px;
+}
+
 #profileCheckDiv input{
     background-color: rgba(0, 0, 0, 0);
     border: none;
+}
+
+#profileCheckDiv input[type=button]{
+    cursor: pointer;
 }
