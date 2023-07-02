@@ -63,6 +63,7 @@ export default function Add(){
                         });
                         wordRef.current.value = '';
                         meanRef.current.value = '';
+                        setPopup(null)
                     } else {
                         setPopup(res.data)
                     }

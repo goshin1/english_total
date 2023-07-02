@@ -13,6 +13,7 @@ export default function SpellFill(){
     const [select, setSelect] = useState(0);
     const [wrong, setWrong] = useState([]);
     const [typo, setTypo] = useState(0);
+    
     const thema = location.state.thema;
     /*
         answers
