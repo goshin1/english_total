@@ -9,21 +9,28 @@ export default function Profile(){
     const navigate = useNavigate();
     const location = useLocation();
     const [thema, setThema] = useState(location.state.thema);
-    const [profile, setProfile] = useState({});
-    const [psw, setPsw] = useState(profile.psw);
-    const [pswCh, setPswCh] = useState(profile.psw);
-    const [email, setEmail] = useState(profile.email);
-
-    useEffect(()=>{
+    const [id, setId] = useState();
+    const [psw, setPsw] = useState();
+    const [pswCh, setPswCh] = useState();
+    const [email, setEmail] = useState();
+    
+    if(id === undefined || psw === undefined || pswCh === undefined || email === undefined){
         axios.post(`${process.env.REACT_APP_ROUTER_HOST}profile`, {
             data : {
                 id : location.state.id
             }
         })
         .then((res) => {
-            setProfile(res.data[0]);
+            let profile = res.data[0];
+            setId(profile.id);
+            setPsw(profile.password);
+            setPswCh(profile.password);
+            setEmail(profile.email);
         });
-    },[]);
+    
+    }
+
+
 
     if(thema){
         document.body.style.backgroundColor = '#ffffff';
@@ -39,22 +46,22 @@ export default function Profile(){
         <div id="profileDiv">
             <label>
                 Id <input type="text" name="modifyId"
-                    style={thema ? {color : '#202020'} : {color : '#ffffff'}} defaultValue={profile.id} disabled />
+                    style={thema ? {color : '#202020'} : {color : '#ffffff'}} defaultValue={id} disabled />
             </label>
             <label>
                 Password<input type="password" name="modifyPsw"
                     onChange={event => {setPsw(event.currentTarget.value)}}
-                    style={thema ? {color : '#202020'} : {color : '#ffffff'}} defaultValue={profile.password} />
+                    style={thema ? {color : '#202020'} : {color : '#ffffff'}} defaultValue={pswCh} />
             </label>
             <label>
                 Password Check<input type="password" name="modifyPswCh"
                 onChange={event => {setPswCh(event.currentTarget.value)}}
-                    style={psw !== pswCh ? {color : '#ff0000'} : {color : thema ? '#202020' : '#ffffff'}} defaultValue={profile.password} />
+                    style={psw !== pswCh ? {color : '#ff0000'} : {color : thema ? '#202020' : '#ffffff'}} defaultValue={pswCh} />
             </label>
             <label>
                 E-mail<input type="text" name="modifyEmail"
                     onChange={event => {setEmail(event.currentTarget.value)}}
-                    style={thema ? {color : '#202020'} : {color : '#ffffff'}} defaultValue={profile.email} />
+                    style={thema ? {color : '#202020'} : {color : '#ffffff'}} defaultValue={email} />
             </label>
             <label>
                 <button style={thema ? {color : ''} : {color : '#ffffff'}}
@@ -67,9 +74,10 @@ export default function Profile(){
                             alert('빈칸을 입력해주세요')
                             return
                         }
+                        
                         axios.post(`${process.env.REACT_APP_ROUTER_HOST}updateProfile`, {
                             data : {
-                                id : profile.id,
+                                id : id,
                                 psw : psw,
                                 email : email
                             }
