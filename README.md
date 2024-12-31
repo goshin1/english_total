@@ -16,12 +16,15 @@
 * Node.js
 * React
 * Postgresql
-  
+
+## 구조
+![](gifs/abc_structure.PNG)
+
 ## 개발 과정
 * 3월 1주
   * 텍스트 파일로 만들고 싶은 영어단어 사이트에 대한 필요 기능을 정리
   * 사이트의 사용할 메인 컬러를 결정
-  * 카카오 오븐을 통해 UI를 구상(https://ovenapp.io/view/xoABBPXR6YB8W3zMkAuUgavG4hvLyAUC/keNCa)
+  * 카카오 오븐을 통해 UI를 구상
   * 로그인 페이지와 목록 페이지를 제작
   * 요청받아 처리할 서버를 제작
 * 3월 2주
